@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.title">Vitor Rodrigues Ferreira</title>
+
+  <meta name="description" data-i18n-attr="content:meta.description"
+    content="Portfólio de Vitor Rodrigues Ferreira, Desenvolvedor Front-end. Interfaces responsivas e acessíveis feitas com HTML, CSS, JavaScript, TypeScript e Angular.">
+  <meta name="author"
+    content="Vitor Rodrigues Ferreira">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" data-i18n-attr="content:meta.ogLocale" content="pt_BR">
+  <meta property="og:title" content="Vitor Rodrigues Ferreira">
+  <meta property="og:description" data-i18n-attr="content:meta.ogDescription"
+    content="Interfaces responsivas e acessíveis. Veja os projetos e como entrar em contato.">
+
+  <meta property="og:url" content="https://vitordev18.github.io/portfolio/">
+
+  <meta name="theme-color" content="#08090a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f7f5" media="(prefers-color-scheme: light)">
+
+  <link rel="canonical" href="https://vitordev18.github.io/portfolio/">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='system-ui'>&#60;/&#62;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+
+      var saved = null;
+      var lang = null;
+
+      try {
+        saved = localStorage.getItem('theme');
+        lang = localStorage.getItem('lang');
+      } catch (error) {
+        saved = null;
+      }
+
+      var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+
+      if (lang !== 'pt' && lang !== 'en') {
+        lang = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+      }
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vitor Rodrigues Ferreira",
+    "jobTitle": "Desenvolvedor Front-end",
+    "email": "mailto:vrferreiraz18@gmail.com",
+    "url": "https://vitordev18.github.io/portfolio/",
+    "image": "https://vitordev18.github.io/portfolio/assets/img/profile.jpeg",
+    "address": { "@type": "PostalAddress", "addressCountry": "BR" },
+    "sameAs": [
+      "https://github.com/vitordev18",
+      "https://www.linkedin.com/in/vitor-rodrigues-ferreira-87662a212/",
+      "https://www.instagram.com/_viitorodrigues/"
+    ],
+    "knowsAbout": ["HTML", "CSS", "JavaScript", "TypeScript", "Angular", "PHP", "Laravel", "Java"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo" data-i18n="a11y.skip">Pular para o conteúdo</a>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-html5" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></symbol>
+      <symbol id="i-css" viewBox="0 0 24 24"><path d="M0 0v20.16A3.84 3.84 0 0 0 3.84 24h16.32A3.84 3.84 0 0 0 24 20.16V3.84A3.84 3.84 0 0 0 20.16 0Zm14.256 13.08c1.56 0 2.28 1.08 2.304 2.64h-1.608c.024-.288-.048-.6-.144-.84-.096-.192-.288-.264-.552-.264-.456 0-.696.264-.696.84-.024.576.288.888.768 1.08.72.288 1.608.744 1.92 1.296q.432.648.432 1.656c0 1.608-.912 2.592-2.496 2.592-1.656 0-2.4-1.032-2.424-2.688h1.68c0 .792.264 1.176.792 1.176.264 0 .456-.072.552-.24.192-.312.24-1.176-.048-1.512-.312-.408-.912-.6-1.32-.816q-.828-.396-1.224-.936c-.24-.36-.36-.888-.36-1.536 0-1.44.936-2.472 2.424-2.448m5.4 0c1.584 0 2.304 1.08 2.328 2.64h-1.608c0-.288-.048-.6-.168-.84-.096-.192-.264-.264-.528-.264-.48 0-.72.264-.72.84s.288.888.792 1.08c.696.288 1.608.744 1.92 1.296.264.432.408.984.408 1.656.024 1.608-.888 2.592-2.472 2.592-1.68 0-2.424-1.056-2.448-2.688h1.68c0 .744.264 1.176.792 1.176.264 0 .456-.072.552-.24.216-.312.264-1.176-.048-1.512-.288-.408-.888-.6-1.32-.816-.552-.264-.96-.576-1.2-.936s-.36-.888-.36-1.536c-.024-1.44.912-2.472 2.4-2.448m-11.031.018c.711-.006 1.419.198 1.839.63.432.432.672 1.128.648 1.992H9.336c.024-.456-.096-.792-.432-.96-.312-.144-.768-.048-.888.24-.12.264-.192.576-.168.864v3.504c0 .744.264 1.128.768 1.128a.65.65 0 0 0 .552-.264c.168-.24.192-.552.168-.84h1.776c.096 1.632-.984 2.712-2.568 2.688-1.536 0-2.496-.864-2.472-2.472v-4.032c0-.816.24-1.44.696-1.848.432-.408 1.146-.624 1.857-.63"/></symbol>
+      <symbol id="i-javascript" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></symbol>
+      <symbol id="i-typescript" viewBox="0 0 24 24"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></symbol>
+      <symbol id="i-angular" viewBox="0 0 24 24"><path d="M16.712 17.711H7.288l-1.204 2.916L12 24l5.916-3.373-1.204-2.916ZM14.692 0l7.832 16.855.814-12.856L14.692 0ZM9.308 0 .662 3.999l.814 12.856L9.308 0Zm-.405 13.93h6.198L12 6.396 8.903 13.93Z"/></symbol>
+      <symbol id="i-php" viewBox="0 0 24 24"><path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312zm-3.26 7.451c-.261.25-.575.438-.917.551-.336.108-.765.164-1.285.164H5.357l-.327 1.681H3.652l1.23-6.326h2.65c.797 0 1.378.209 1.744.628.366.418.476 1.002.33 1.752a2.836 2.836 0 0 1-.305.847c-.143.255-.33.49-.561.703zm4.024.715l.543-2.799c.063-.318.039-.536-.068-.651-.107-.116-.336-.174-.687-.174H11.46l-.704 3.625H9.388l1.23-6.327h1.367l-.327 1.682h1.218c.767 0 1.295.134 1.586.401s.378.7.263 1.299l-.572 2.944h-1.389zm7.597-2.265a2.782 2.782 0 0 1-.305.847c-.143.255-.33.49-.561.703a2.44 2.44 0 0 1-.917.551c-.336.108-.765.164-1.286.164h-1.18l-.327 1.682h-1.378l1.23-6.326h2.649c.797 0 1.378.209 1.744.628.366.417.477 1.001.331 1.751zM17.766 10.207h-.943l-.516 2.648h.838c.557 0 .971-.105 1.242-.314.272-.21.455-.559.551-1.049.092-.47.049-.802-.125-.995s-.524-.29-1.047-.29z"/></symbol>
+      <symbol id="i-laravel" viewBox="0 0 24 24"><path d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027c-.008.002-.016.008-.024.01a.348.348 0 01-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.033.005-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 01.023-.058c.004-.013.015-.022.023-.033l.033-.045c.012-.01.025-.018.037-.027.014-.012.027-.024.041-.034H.53L5.043.05a.375.375 0 01.375 0L9.93 2.647h.002c.015.01.027.021.04.033l.038.027c.013.014.02.03.033.045.008.011.02.021.025.033.01.02.017.038.024.058.003.011.01.021.013.032.01.031.014.064.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.003-.01.01-.02.013-.032a.487.487 0 01.024-.059c.007-.012.018-.02.025-.033.012-.015.021-.03.033-.043.012-.012.025-.02.037-.028.014-.01.026-.023.041-.032h.001l4.513-2.598a.375.375 0 01.375 0l4.513 2.598c.016.01.027.021.042.031.012.01.025.018.036.028.013.014.022.03.034.044.008.012.019.021.024.033.011.02.018.04.024.06.006.01.012.021.015.032zm-.74 5.032V6.179l-1.578.908-2.182 1.256v4.283zm-4.51 7.75v-4.287l-2.147 1.225-6.126 3.498v4.325zM1.093 3.624v14.588l8.273 4.761v-4.325l-4.322-2.445-.002-.003H5.04c-.014-.01-.025-.021-.04-.031-.011-.01-.024-.018-.035-.027l-.001-.002c-.013-.012-.021-.025-.031-.04-.01-.011-.021-.022-.028-.036h-.002c-.008-.014-.013-.031-.02-.047-.006-.016-.014-.027-.018-.043a.49.49 0 01-.008-.057c-.002-.014-.006-.027-.006-.041V5.789l-2.18-1.257zM5.23.81L1.47 2.974l3.76 2.164 3.758-2.164zm1.956 13.505l2.182-1.256V3.624l-1.58.91-2.182 1.255v9.435zm11.581-10.95l-3.76 2.163 3.76 2.163 3.759-2.164zm-.376 4.978L16.21 7.087 14.63 6.18v4.283l2.182 1.256 1.58.908zm-8.65 9.654l5.514-3.148 2.756-1.572-3.757-2.163-4.323 2.489-3.941 2.27z"/></symbol>
+      <symbol id="i-java" viewBox="0 0 24 24"><path d="M11.915 0 11.7.215C9.515 2.4 7.47 6.39 6.046 10.483c-1.064 1.024-3.633 2.81-3.711 3.551-.093.87 1.746 2.611 1.55 3.235-.198.625-1.304 1.408-1.014 1.939.1.188.823.011 1.277-.491a13.389 13.389 0 0 0-.017 2.14c.076.906.27 1.668.643 2.232.372.563.956.911 1.667.911.397 0 .727-.114 1.024-.264.298-.149.571-.33.91-.5.68-.34 1.634-.666 3.53-.604 1.903.062 2.872.39 3.559.704.687.314 1.15.664 1.925.664.767 0 1.395-.336 1.807-.9.412-.563.631-1.33.72-2.24.06-.623.055-1.32 0-2.066.454.45 1.117.604 1.213.424.29-.53-.816-1.314-1.013-1.937-.198-.624 1.642-2.366 1.549-3.236-.08-.748-2.707-2.568-3.748-3.586C16.428 6.374 14.308 2.394 12.13.215zm.175 6.038a2.95 2.95 0 0 1 2.943 2.942 2.95 2.95 0 0 1-2.943 2.943A2.95 2.95 0 0 1 9.148 8.98a2.95 2.95 0 0 1 2.942-2.942zM8.685 7.983a3.515 3.515 0 0 0-.145.997c0 1.951 1.6 3.55 3.55 3.55 1.95 0 3.55-1.598 3.55-3.55 0-.329-.046-.648-.132-.951.334.095.64.208.915.336a42.699 42.699 0 0 1 2.042 5.829c.678 2.545 1.01 4.92.846 6.607-.082.844-.29 1.51-.606 1.94-.315.431-.713.651-1.315.651-.593 0-.932-.27-1.673-.61-.741-.338-1.825-.694-3.792-.758-1.974-.064-3.073.293-3.821.669-.375.188-.659.373-.911.5s-.466.2-.752.2c-.53 0-.876-.209-1.16-.64-.285-.43-.474-1.101-.545-1.948-.141-1.693.176-4.069.823-6.614a43.155 43.155 0 0 1 1.934-5.783c.348-.167.749-.31 1.192-.425zm-3.382 4.362a.216.216 0 0 1 .13.031c-.166.56-.323 1.116-.463 1.665a33.849 33.849 0 0 0-.547 2.555 3.9 3.9 0 0 0-.2-.39c-.58-1.012-.914-1.642-1.16-2.08.315-.24 1.679-1.755 2.24-1.781zm13.394.01c.562.027 1.926 1.543 2.24 1.783-.246.438-.58 1.068-1.16 2.08a4.428 4.428 0 0 0-.163.309 32.354 32.354 0 0 0-.562-2.49 40.579 40.579 0 0 0-.482-1.652.216.216 0 0 1 .127-.03z"/></symbol>
+      <symbol id="i-postgresql" viewBox="0 0 24 24"><path d="M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z"/></symbol>
+      <symbol id="i-git" viewBox="0 0 24 24"><path d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></symbol>
+      <symbol id="i-figma" viewBox="0 0 24 24"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></symbol>
+      <symbol id="i-vercel" viewBox="0 0 24 24"><path d="m12 1.608 12 20.784H0Z"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+      <symbol id="i-vscode" viewBox="0 0 128 128"><path fill-rule="evenodd" d="M90.767 127.126a7.968 7.968 0 0 0 6.35-.244l26.353-12.681a8 8 0 0 0 4.53-7.209V21.009a8 8 0 0 0-4.53-7.21L97.117 1.12a7.97 7.97 0 0 0-9.093 1.548l-50.45 46.026L15.6 32.013a5.328 5.328 0 0 0-6.807.302l-7.048 6.411a5.335 5.335 0 0 0-.006 7.888L20.796 64 1.74 81.387a5.336 5.336 0 0 0 .006 7.887l7.048 6.411a5.327 5.327 0 0 0 6.807.303l21.974-16.68 50.45 46.025a7.96 7.96 0 0 0 2.743 1.793Zm5.252-92.183L57.74 64l38.28 29.058V34.943Z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.4 9.4 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.59.67.5A10 10 0 0022 12 10 10 0 0012 2z"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM3.2 21h3.5V8.7H3.2V21zM9.2 8.7h3.35v1.68h.05c.47-.85 1.6-1.75 3.3-1.75 3.53 0 4.18 2.24 4.18 5.15V21h-3.5v-5.5c0-1.31-.02-3-1.86-3-1.87 0-2.15 1.42-2.15 2.9V21H9.2V8.7z"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header" id="header">
+    <div class="container header__inner">
+      <a class="brand" href="#inicio" data-i18n-attr="aria-label:a11y.brand" aria-label="Início">
+        <span class="brand__mark">VR</span>
+        <span class="brand__text">Vitor Ferreira</span>
+      </a>
+
+      <nav class="nav" id="nav" data-i18n-attr="aria-label:a11y.nav" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a class="nav__link is-active" href="#inicio" data-i18n="nav.home">Início</a></li>
+          <li><a class="nav__link" href="#sobre" data-i18n="nav.about">Sobre</a></li>
+          <li><a class="nav__link" href="#stack" data-i18n="nav.stack">Stack</a></li>
+          <li><a class="nav__link" href="#experiencia" data-i18n="nav.experience">Experiência</a></li>
+          <li><a class="nav__link" href="#formacao" data-i18n="nav.education">Formação</a></li>
+          <li><a class="nav__link" href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+          <li><a class="nav__link" href="#contato" data-i18n="nav.contact">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <div class="lang" id="lang">
+          <button class="icon-btn lang__toggle" id="lang-toggle" type="button" aria-haspopup="true"
+            aria-expanded="false" aria-controls="lang-menu" aria-label="Idioma: Português">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3a15 15 0 014 9 15 15 0 01-4 9 15 15 0 01-4-9 15 15 0 014-9z" />
+            </svg>
+            <span class="lang__code" id="lang-code">PT</span>
+            <svg class="icon lang__caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+
+          <ul class="lang__menu" id="lang-menu" role="menu" data-i18n-attr="aria-label:a11y.langMenu"
+            aria-label="Escolha o idioma" hidden>
+            <li role="none">
+              <button class="lang__option" type="button" role="menuitemradio" aria-checked="true" data-lang="pt">
+                <span class="lang__badge">PT</span>
+                <span class="lang__name">Português</span>
+                <svg class="icon lang__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="lang__option" type="button" role="menuitemradio" aria-checked="false" data-lang="en">
+                <span class="lang__badge">EN</span>
+                <span class="lang__name">English</span>
+                <svg class="icon lang__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+              </button>
+            </li>
+          </ul>
+
+          <p class="sr-only" id="lang-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <button class="icon-btn" id="theme-toggle" type="button" data-i18n-attr="aria-label:a11y.theme"
+          aria-label="Alternar tema claro e escuro">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" />
+          </svg>
+        </button>
+
+        <button class="icon-btn menu-btn" id="menu-toggle" type="button"
+          data-i18n-attr="aria-label:a11y.menuOpen" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+          <span class="menu-btn__bar"></span>
+          <span class="menu-btn__bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero section" id="inicio">
+      <div class="container hero__inner">
+        <div class="hero__content">
+
+          <p class="hero__status" data-i18n="hero.available">Disponível para novas oportunidades</p>
+
+          <h1 class="hero__title">Vitor Rodrigues Ferreira</h1>
+          <p class="hero__role" data-i18n="role">Desenvolvedor Front-end</p>
+
+          <p class="hero__lead" data-i18n-html="hero.lead">
+            Construo interfaces responsivas em <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong>, <strong>TypeScript</strong> e <strong>Angular</strong>. Acessibilidade e marcação semântica fazem parte do trabalho desde o começo.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projetos">
+              <span data-i18n="hero.cta.projects">Ver projetos</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+            <a class="btn btn--ghost" href="assets/cv/vitor-rodrigues-ferreira-cv.pdf" download>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14" /></svg>
+              <span data-i18n="hero.cta.cv">Baixar CV</span>
+            </a>
+          </div>
+
+          <ul class="social" data-i18n-attr="aria-label:a11y.social" aria-label="Redes sociais">
+            <li>
+              <a class="social__link" href="https://github.com/vitordev18" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub">
+                <svg class="icon icon--brand" aria-hidden="true"><use href="#i-github"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="https://www.linkedin.com/in/vitor-rodrigues-ferreira-87662a212/"
+                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="icon icon--brand" aria-hidden="true"><use href="#i-linkedin"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="https://www.instagram.com/_viitorodrigues/" target="_blank"
+                rel="noopener noreferrer" aria-label="Instagram">
+                <svg class="icon icon--brand" aria-hidden="true"><use href="#i-instagram"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="mailto:vrferreiraz18@gmail.com"
+                data-i18n-attr="aria-label:a11y.email" aria-label="E-mail">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <aside class="hero__spec" data-i18n-attr="aria-label:a11y.spec" aria-label="Ficha técnica">
+          <img class="hero__portrait" src="assets/img/profile.jpeg" width="336" height="336"
+            decoding="async" data-i18n-attr="alt:hero.portrait" alt="Vitor Rodrigues Ferreira">
+
+          <dl class="spec">
+            <div class="spec__row">
+              <dt class="spec__key" data-i18n="spec.stack">stack</dt>
+              <dd class="spec__value">TypeScript · Angular</dd>
+            </div>
+            <div class="spec__row">
+              <dt class="spec__key" data-i18n="spec.now">hoje</dt>
+              <dd class="spec__value" data-i18n="spec.now.value">Moni Software · desde 2025</dd>
+            </div>
+            <div class="spec__row">
+              <dt class="spec__key" data-i18n="spec.base">base</dt>
+              <dd class="spec__value" data-i18n="hero.location">Brasil · Remoto</dd>
+            </div>
+            <div class="spec__row">
+              <dt class="spec__key" data-i18n="spec.contrast">contraste</dt>
+              <dd class="spec__value"><span id="spec-ratio">18.5:1</span> <em id="spec-level">· AAA</em></dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="container section__grid">
+        <p class="section__meta" data-i18n="meta.about">21 anos · front-end</p>
+
+        <div>
+          <header class="section__head reveal">
+            <h2 class="section__title" data-i18n="about.title">Sobre</h2>
+          </header>
+
+          <div class="about">
+            <div class="about__text reveal">
+              <p data-i18n-html="about.p1">
+                Tenho 21 anos e sou <strong>Desenvolvedor Front-end</strong>. Meu trabalho é pegar um layout e transformar em interface que funciona: marcação semântica, <em>mobile-first</em> e atenção a performance e acessibilidade.
+              </p>
+              <p data-i18n-html="about.p2">
+                Trabalho na <strong>Moni Software</strong> como Desenvolvedor Front-end Júnior. Lá desenvolvo e mantenho interfaces web com TypeScript e Angular.
+              </p>
+              <p data-i18n-html="about.p3">
+                Também mexi com PHP, Laravel e PostgreSQL em projetos acadêmicos <em>full-stack</em>. Isso ajuda na hora de conversar com o back-end e entender o resto do produto.
+              </p>
+            </div>
+
+            <ul class="stats reveal">
+              <li class="stat">
+                <strong class="stat__value">3+</strong>
+                <span class="stat__label" data-i18n-html="about.stat.years">anos estudando<br>desenvolvimento</span>
+              </li>
+              <li class="stat">
+                <strong class="stat__value">13</strong>
+                <span class="stat__label" data-i18n-html="about.stat.repos">repositórios<br>públicos</span>
+              </li>
+              <li class="stat">
+                <strong class="stat__value">100%</strong>
+                <span class="stat__label" data-i18n-html="about.stat.layouts">layouts<br>mobile-first</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="stack">
+      <div class="container section__grid">
+        <p class="section__meta" data-i18n="meta.stack" data-i18n-count="#stack .tag__icon">14 tecnologias</p>
+
+        <div>
+          <header class="section__head reveal">
+            <h2 class="section__title" data-i18n="stack.title">Stack</h2>
+            <p class="section__sub" data-i18n="stack.sub">Tecnologias que uso no dia a dia e em projetos pessoais.</p>
+          </header>
+
+          <div class="stack-grid">
+            <article class="stack-card reveal">
+              <h3 class="stack-card__title">
+                <span data-i18n="stack.frontend">Front-end</span>
+              </h3>
+              <ul class="tags">
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-html5"/></svg>HTML5</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-css"/></svg>CSS3</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-javascript"/></svg>JavaScript</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-typescript"/></svg>TypeScript</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-angular"/></svg>Angular</li>
+                <li class="tag" data-i18n="stack.tag.responsive">Responsividade</li>
+                <li class="tag" data-i18n="stack.tag.a11y">Acessibilidade</li>
+              </ul>
+            </article>
+
+            <article class="stack-card reveal">
+              <h3 class="stack-card__title">
+                <span data-i18n="stack.backend">Back-end &amp; Dados</span>
+              </h3>
+              <ul class="tags">
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-php"/></svg>PHP 8</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-laravel"/></svg>Laravel</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-java"/></svg>Java</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-postgresql"/></svg>PostgreSQL</li>
+                <li class="tag" data-i18n="stack.tag.rest">APIs REST</li>
+              </ul>
+            </article>
+
+            <article class="stack-card reveal">
+              <h3 class="stack-card__title">
+                <span data-i18n="stack.tools">Ferramentas</span>
+              </h3>
+              <ul class="tags">
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-git"/></svg>Git</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-vscode"/></svg>VS Code</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-figma"/></svg>Figma</li>
+                <li class="tag"><svg class="tag__icon" aria-hidden="true"><use href="#i-vercel"/></svg>Vercel</li>
+                <li class="tag" data-i18n="stack.tag.agile">Metodologias Ágeis</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiencia">
+      <div class="container section__grid">
+        <p class="section__meta" data-i18n="meta.experience"
+          data-i18n-count="#experiencia .timeline__item">3 empresas</p>
+
+        <div>
+          <header class="section__head reveal">
+            <h2 class="section__title" data-i18n="experience.title">Experiência</h2>
+            <p class="section__sub" data-i18n="experience.sub">Onde trabalhei e o que fiz em cada lugar.</p>
+          </header>
+
+          <ol class="timeline">
+            <li class="timeline__item reveal">
+              <span class="timeline__period" data-i18n="exp.moni.period">desde nov 2025</span>
+              <h3 class="timeline__role" data-i18n="exp.moni.role">Programador Front-end Júnior III</h3>
+              <p class="timeline__org" data-i18n="exp.moni.org">Moni Software · Bauru, SP · Presencial</p>
+              <p class="timeline__desc" data-i18n="exp.moni.desc">
+                Trabalho numa plataforma de monitoramento de eventos de segurança, dentro de um time de front-end de 10 pessoas. Monto telas com Angular, TypeScript, RxJS, Angular Material e PrimeNG, consumo APIs REST e corrijo bugs em produção.
+              </p>
+            </li>
+
+            <li class="timeline__item reveal">
+              <span class="timeline__period" data-i18n="exp.bracell.period">mai 2025 a nov 2025</span>
+              <h3 class="timeline__role" data-i18n="exp.bracell.role">Estágio Técnico</h3>
+              <p class="timeline__org" data-i18n="exp.bracell.org">Bracell · Lençóis Paulista, SP · Presencial</p>
+              <p class="timeline__desc" data-i18n="exp.bracell.desc">
+                Apoiei a análise e o desenho de sistemas, acompanhei rotinas de manutenção de equipamentos industriais e cuidei da coleta e do registro de dados nos sistemas de gestão. Usei VBA e SAP ERP.
+              </p>
+            </li>
+
+            <li class="timeline__item reveal">
+              <span class="timeline__period" data-i18n="exp.unimed.period">jun 2023 a abr 2025</span>
+              <h3 class="timeline__role" data-i18n="exp.unimed.role">Assistente Administrativo GRC e Jovem Aprendiz</h3>
+              <p class="timeline__org" data-i18n="exp.unimed.org">Unimed Bauru · Bauru, SP · Presencial</p>
+              <p class="timeline__desc" data-i18n="exp.unimed.desc">
+                Entrei como Jovem Aprendiz na expedição, organizando documentos e materiais e controlando entradas e saídas. Depois, em governança, risco e controle, apoiei o mapeamento de riscos, as políticas internas e a preparação de documentos e relatórios.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="formacao">
+      <div class="container section__grid">
+        <p class="section__meta" data-i18n="meta.education"
+          data-i18n-count="#formacao .timeline__item">3 formações</p>
+
+        <div>
+          <header class="section__head reveal">
+            <h2 class="section__title" data-i18n="education.title">Formação</h2>
+            <p class="section__sub" data-i18n="education.sub">Onde estudei e o que estou estudando agora.</p>
+          </header>
+
+          <ol class="timeline">
+            <li class="timeline__item reveal">
+              <span class="timeline__period" data-i18n="edu.tecnico.period">fev 2024 a dez 2026</span>
+              <h3 class="timeline__role" data-i18n="edu.tecnico.role">Curso Técnico em Informática</h3>
+              <p class="timeline__org" data-i18n="edu.tecnico.org">Colégio Técnico Industrial "Prof. Isaac Portal Roldán" · noturno</p>
+              <p class="timeline__desc" data-i18n="edu.tecnico.desc">
+                Curso em andamento, onde estudo PHP, PostgreSQL e os fundamentos de desenvolvimento.
+              </p>
+            </li>
+
+            <li class="timeline__item reveal">
+              <span class="timeline__period" data-i18n="edu.etec.period">jan 2020 a dez 2022</span>
+              <h3 class="timeline__role" data-i18n="edu.etec.role">Ensino Médio com técnico em Logística</h3>
+              <p class="timeline__org" data-i18n="edu.etec.org">ETEC · Escola Técnica Estadual de São Paulo</p>
+              <p class="timeline__desc" data-i18n="edu.etec.desc">
+                Logística, materiais e cadeia de suprimentos.
+              </p>
+            </li>
+
+            <li class="timeline__item reveal">
+              <span class="timeline__period" data-i18n="edu.ingles.period">jan 2014 a dez 2022</span>
+              <h3 class="timeline__role" data-i18n="edu.ingles.role">Inglês, curso avançado</h3>
+              <p class="timeline__org">American Corner</p>
+              <p class="timeline__desc" data-i18n="edu.ingles.desc">
+                Curso completo até o nível avançado.
+              </p>
+            </li>
+          </ol>
+          <div class="certs reveal">
+            <h3 class="certs__title" data-i18n="certs.title">Certificados</h3>
+            <p class="certs__summary" data-i18n="certs.summary"
+              data-i18n-count=".cert:not(.cert--wip)">22 cursos · 161 horas na Alura</p>
+
+            <ul class="cert-groups">
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.a11y">Acessibilidade</span>
+                  <span class="cert-group__meta" data-i18n="certs.a11y.meta">4 cursos · 28h · ago 2025</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/38a9ffa1-b7de-459e-89e6-64cea00e72ed" target="_blank" rel="noopener noreferrer">Acessibilidade em HTML, CSS e JavaScript: avaliando e melhorando um projeto com o NVDA</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/ac4b26a7-4094-4c1f-97f5-a4e7b478835d" target="_blank" rel="noopener noreferrer">Acessibilidade Web: manipulando WAI-ARIA e elementos interativos com JavaScript</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/67b1b5ce-db94-42c3-b633-1c015b1dfdef" target="_blank" rel="noopener noreferrer">Acessibilidade no HTML: escrevendo códigos semânticos para inclusão</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/e3c5fcf2-6def-424b-9f31-7c74991a4420" target="_blank" rel="noopener noreferrer">CSS: ajustando a acessibilidade visual em um projeto</a></li>
+                </ul>
+              </li>
+
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.js">JavaScript</span>
+                  <span class="cert-group__meta" data-i18n="certs.js.meta">7 cursos · 52h · jun a jul 2025</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/12b4789a-0605-4404-b819-6c10d1ed6ad4" target="_blank" rel="noopener noreferrer">JavaScript: evoluindo a sua aplicação com ES6+</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/38d1e4c7-4fb1-4213-83a9-3e375a2acb43" target="_blank" rel="noopener noreferrer">JavaScript: implementando CRUD com requisições HTTP</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/a13c92a3-3794-497b-94ad-95b91cac2701" target="_blank" rel="noopener noreferrer">JavaScript: explorando a manipulação de elementos e da localStorage</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/d018c7d0-edea-4531-98e0-3f4d26851584" target="_blank" rel="noopener noreferrer">JavaScript: manipulando elementos no DOM</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/17cbfa5d-89a1-4953-9124-5a83eee56b1f" target="_blank" rel="noopener noreferrer">JavaScript: métodos de array</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/cc5d9b95-42b0-464f-bb92-cf5609e401a4" target="_blank" rel="noopener noreferrer">JavaScript: entendendo promises e async/await</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/ed3debbe-66b2-4b19-b3df-3c759b8fd9b4" target="_blank" rel="noopener noreferrer">JavaScript: construindo páginas dinâmicas</a></li>
+                </ul>
+              </li>
+
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.htmlcss">HTML e CSS</span>
+                  <span class="cert-group__meta" data-i18n="certs.htmlcss.meta">6 cursos · 48h · abr a jun 2025</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert" data-hours="12" href="https://cursos.alura.com.br/certificate/65684f06-b708-4bf7-9836-fd3fd8eb668f" target="_blank" rel="noopener noreferrer">HTML e CSS: responsividade com mobile-first</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/e0127863-20de-4d59-af8c-76332d9b55da" target="_blank" rel="noopener noreferrer">HTML e CSS: praticando HTML/CSS</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/bfcba4b7-e2e7-41bd-8017-6d2d847dbb29" target="_blank" rel="noopener noreferrer">HTML e CSS: trabalhando com responsividade e publicação de projetos</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/16d775f4-af1c-4287-9e79-6c539f1730e6" target="_blank" rel="noopener noreferrer">HTML e CSS: cabeçalho, footer e variáveis CSS</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/9e28a47b-b682-452e-8c41-814b502c5d73" target="_blank" rel="noopener noreferrer">HTML e CSS: Classes, posicionamento e Flexbox</a></li>
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/2f4f3664-648e-42dd-95b7-433d2cb891b3" target="_blank" rel="noopener noreferrer">HTML e CSS: ambientes de desenvolvimento, estrutura de arquivos e tags</a></li>
+                </ul>
+              </li>
+
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.logic">Lógica de programação</span>
+                  <span class="cert-group__meta" data-i18n="certs.logic.meta">3 cursos · 20h · out 2024 a mar 2025</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/e05339eb-fa18-4299-b497-cd68e9471104" target="_blank" rel="noopener noreferrer">Lógica de programação: praticando com desafios</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/b17f3897-1422-4765-8235-41376f682dbd" target="_blank" rel="noopener noreferrer">Lógica de programação: explore funções e listas</a></li>
+                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/1d1565c1-fc33-4523-8a53-54f27a264d56" target="_blank" rel="noopener noreferrer">Lógica de programação: mergulhe em programação com JavaScript</a></li>
+                </ul>
+              </li>
+
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.git">Git e GitHub</span>
+                  <span class="cert-group__meta" data-i18n="certs.git.meta">1 curso · 8h · jan 2025</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/7301eb4b-b81d-48ff-b018-cc67d32feb45" target="_blank" rel="noopener noreferrer">Git e GitHub: compartilhando e colaborando em projetos</a></li>
+                </ul>
+              </li>
+
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.immersion">Imersão</span>
+                  <span class="cert-group__meta" data-i18n="certs.immersion.meta">5h · fev 2024</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert" data-hours="5" href="https://cursos.alura.com.br/immersion/certificate/97f23619-16cb-4ca0-aa28-e2b23a4b638d" target="_blank" rel="noopener noreferrer">Imersão Front-End</a></li>
+                </ul>
+              </li>
+
+              <li class="cert-group">
+                <p class="cert-group__head">
+                  <span class="cert-group__name" data-i18n="certs.wip">Em andamento</span>
+                  <span class="cert-group__meta">Udemy</span>
+                </p>
+                <ul class="cert-list">
+                  <li><a class="cert cert--wip" href="https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/" target="_blank" rel="noopener noreferrer">JavaScript e TypeScript do básico ao avançado - JS + TS</a></li>
+                  <li><a class="cert cert--wip" href="https://www.udemy.com/course/super-treinamento-de-angular-16-do-basico-ao-avancado/" target="_blank" rel="noopener noreferrer">Angular: O Guia Definitivo das Principais Funcionalidades</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projetos">
+      <div class="container section__grid">
+        <p class="section__meta" data-i18n="meta.projects" data-i18n-count="#projects .project">7 repositórios</p>
+
+        <div>
+          <header class="section__head reveal">
+            <h2 class="section__title" data-i18n="projects.title">Projetos</h2>
+            <p class="section__sub" data-i18n="projects.sub">Uma seleção do que construí, de exercício de curso a aplicação completa.</p>
+          </header>
+
+          <div class="filters reveal" id="filters" role="tablist" data-i18n-attr="aria-label:a11y.filters"
+            aria-label="Filtrar projetos por categoria" hidden>
+            <button class="filter is-active" type="button" role="tab" aria-selected="true" data-filter="all"
+              data-i18n="projects.filter.all">Todos</button>
+            <button class="filter" type="button" role="tab" aria-selected="false" data-filter="frontend">Front-end</button>
+            <button class="filter" type="button" role="tab" aria-selected="false" data-filter="fullstack">Full-stack</button>
+            <button class="filter" type="button" role="tab" aria-selected="false" data-filter="mobile">Mobile</button>
+          </div>
+
+          <div class="projects" id="projects">
+            <article class="project project--featured reveal" data-category="fullstack">
+              <header class="project__head">
+                <span class="project__badge" data-i18n="projects.badge">Destaque</span>
+                <h3 class="project__title">Prime Photos</h3>
+              </header>
+              <p class="project__desc" data-i18n="projects.prime.desc">
+                E-commerce de fotos polaroid feito em equipe para a Semana do Colégio, em 2025. Tem autenticação com senha criptografada, recuperação por e-mail com token de uso único e prazo de expiração, carrinho que valida estoque e checkout gravado em banco.
+              </p>
+              <ul class="tags tags--sm">
+                <li class="tag">PHP 8</li>
+                <li class="tag">PostgreSQL</li>
+                <li class="tag">JavaScript</li>
+                <li class="tag">CSS</li>
+                <li class="tag">PHPMailer</li>
+              </ul>
+              <footer class="project__links">
+                <a class="link" href="https://github.com/vitordev18/Prime-Photos" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="projects.link.code">Código</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
+              </footer>
+            </article>
+
+            <article class="project reveal" data-category="mobile">
+              <header class="project__head">
+                <span class="project__badge" data-i18n="projects.wip">Em andamento</span>
+                <h3 class="project__title" data-i18n="projects.tcc.title">Fiscaliza</h3>
+              </header>
+              <p class="project__desc" data-i18n="projects.tcc.desc">
+                Trabalho de Conclusão de Curso, em desenvolvimento ao longo de 2026. Aplicativo mobile em Flutter com build para Android, iOS e Web.
+              </p>
+              <ul class="tags tags--sm">
+                <li class="tag">Dart</li>
+                <li class="tag">Flutter</li>
+                <li class="tag">Mobile</li>
+              </ul>
+              <footer class="project__links">
+                <a class="link" href="https://github.com/vitordev18/INF3-EQ1" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="projects.link.code">Código</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
+              </footer>
+            </article>
+
+            <article class="project reveal" data-category="frontend">
+              <header class="project__head">
+                <h3 class="project__title">AluraBooks</h3>
+              </header>
+              <p class="project__desc" data-i18n="projects.alurabooks.desc">
+                Landing page de uma livraria online, feita mobile-first. Exercício de media queries e de layout com Flexbox e Grid.
+              </p>
+              <ul class="tags tags--sm">
+                <li class="tag">HTML</li>
+                <li class="tag">CSS</li>
+                <li class="tag">Mobile-first</li>
+              </ul>
+              <footer class="project__links">
+                <a class="link" href="https://github.com/vitordev18/AluraBooks" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="projects.link.code">Código</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
+              </footer>
+            </article>
+
+            <article class="project reveal" data-category="frontend">
+              <header class="project__head">
+                <h3 class="project__title">Habit Tracker</h3>
+              </header>
+              <p class="project__desc" data-i18n="projects.habit.desc">
+                Interface para acompanhar hábitos, feita durante o NLW da Rocketseat. Tem grid de progresso e estilização utilitária.
+              </p>
+              <ul class="tags tags--sm">
+                <li class="tag">HTML</li>
+                <li class="tag">CSS</li>
+                <li class="tag">JavaScript</li>
+              </ul>
+              <footer class="project__links">
+                <a class="link" href="https://vitordev18.github.io/nlw-setup" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="projects.link.live">Ver online</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
+                <a class="link link--muted" href="https://github.com/vitordev18/nlw-setup" target="_blank" rel="noopener noreferrer"
+                  data-i18n="projects.link.code">
+                  Código
+                </a>
+              </footer>
+            </article>
+
+            <article class="project reveal" data-category="frontend">
+              <header class="project__head">
+                <h3 class="project__title" data-i18n="projects.imersao.title">Imersão Front-end</h3>
+              </header>
+              <p class="project__desc" data-i18n="projects.imersao.desc">
+                Projeto da Imersão Front-end da Alura: uma interface inteira montada a partir de um layout do Figma, com componentes de CSS reutilizáveis.
+              </p>
+              <ul class="tags tags--sm">
+                <li class="tag">HTML</li>
+                <li class="tag">CSS</li>
+                <li class="tag">JavaScript</li>
+              </ul>
+              <footer class="project__links">
+                <a class="link" href="https://github.com/vitordev18/imersao-front-end" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="projects.link.code">Código</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
+              </footer>
+            </article>
+
+            <article class="project reveal" data-category="frontend">
+              <header class="project__head">
+                <h3 class="project__title" data-i18n="projects.numero.title">Jogo do Número Secreto</h3>
+              </header>
+              <p class="project__desc" data-i18n="projects.numero.desc">
+                Jogo de adivinhação no navegador. Manipulação de DOM, controle de estado, sorteio que não repete número e síntese de voz para acessibilidade.
+              </p>
+              <ul class="tags tags--sm">
+                <li class="tag">JavaScript</li>
+                <li class="tag">DOM</li>
+                <li class="tag">Web Speech API</li>
+              </ul>
+              <footer class="project__links">
+                <a class="link" href="https://github.com/vitordev18/jogo-do-numero-secreto" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="projects.link.code">Código</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                </a>
+              </footer>
+            </article>
+          </div>
+
+          <p class="projects__more reveal">
+            <a class="link link--lg" href="https://github.com/vitordev18?tab=repositories" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="projects.more">Ver todos os repositórios no GitHub</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contato">
+      <div class="container section__grid">
+        <p class="section__meta" data-i18n="meta.contact" data-i18n-count=".contact__aside .contact__item">4 canais diretos</p>
+
+        <div>
+          <header class="section__head reveal">
+            <h2 class="section__title" data-i18n="contact.title">Contato</h2>
+            <p class="section__sub" data-i18n="contact.sub">Estou aberto a oportunidades como Desenvolvedor Front-end. Vamos conversar?</p>
+          </header>
+
+          <div class="contact">
+            <div class="contact__aside reveal">
+              <a class="contact__item" href="mailto:vrferreiraz18@gmail.com">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" />
+                </svg>
+                <span>
+                  <strong data-i18n="contact.email">E-mail</strong>
+                  vrferreiraz18@gmail.com
+                </span>
+              </a>
+
+              <a class="contact__item" href="https://www.linkedin.com/in/vitor-rodrigues-ferreira-87662a212/"
+                target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--brand" aria-hidden="true"><use href="#i-linkedin"/></svg>
+                <span>
+                  <strong>LinkedIn</strong>
+                  /in/vitor-rodrigues-ferreira
+                </span>
+              </a>
+
+              <a class="contact__item" href="https://github.com/vitordev18" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--brand" aria-hidden="true"><use href="#i-github"/></svg>
+                <span>
+                  <strong>GitHub</strong>
+                  @vitordev18
+                </span>
+              </a>
+
+              <a class="contact__item" href="https://www.instagram.com/_viitorodrigues/" target="_blank"
+                rel="noopener noreferrer">
+                <svg class="icon icon--brand" aria-hidden="true"><use href="#i-instagram"/></svg>
+                <span>
+                  <strong>Instagram</strong>
+                  @_viitorodrigues
+                </span>
+              </a>
+            </div>
+
+            <form class="form reveal" id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+              novalidate>
+              <input type="hidden" name="access_key" value="e8b8e7da-b7cc-4be2-bd72-1cf427e8a92c">
+              <input type="hidden" name="from_name" value="Portfólio — Vitor Ferreira">
+
+              <input class="honeypot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"
+                aria-hidden="true">
+
+              <div class="field">
+                <label class="field__label" for="nome" data-i18n="form.name">Nome</label>
+                <input class="field__input" type="text" id="nome" name="nome" required autocomplete="name"
+                  data-i18n-attr="placeholder:form.name.placeholder" placeholder="Seu nome">
+                <span class="field__error" data-error-for="nome"></span>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="email" data-i18n="form.email">E-mail</label>
+                <input class="field__input" type="email" id="email" name="email" required autocomplete="email"
+                  data-i18n-attr="placeholder:form.email.placeholder" placeholder="voce@empresa.com">
+                <span class="field__error" data-error-for="email"></span>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="mensagem" data-i18n="form.message">Mensagem</label>
+                <textarea class="field__input" id="mensagem" name="mensagem" rows="5" required
+                  data-i18n-attr="placeholder:form.message.placeholder"
+                  placeholder="Conte um pouco sobre a oportunidade ou o projeto."></textarea>
+                <span class="field__error" data-error-for="mensagem"></span>
+              </div>
+
+              <button class="btn btn--primary btn--block" type="submit">
+                <span data-i18n="form.submit">Enviar mensagem</span>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6" /></svg>
+              </button>
+
+              <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+
+              <p class="form__note" data-i18n="form.note">
+                O Web3Forms processa o envio e a mensagem chega no meu e-mail. Este site não guarda nada.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© <span id="year">2026</span> Vitor Rodrigues Ferreira</p>
+      <a class="footer__top" href="#inicio">
+        <span data-i18n="footer.top">Voltar ao topo</span>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>

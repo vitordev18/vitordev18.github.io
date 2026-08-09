@@ -1,0 +1,17 @@
+# Configuração de IDE
+.idea/
+.vscode/
+*.iml
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Documentação interna: fica fora do repositório para o GitHub não
+# renderizá-la na home. Mantida localmente.
+README.md
+
+# Logs e temporários
+*.log
+*.tmp
