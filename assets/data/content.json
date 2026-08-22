@@ -1,0 +1,629 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-21",
+  "categories": [
+    {
+      "id": "frontend",
+      "label": {
+        "pt": "Front-end",
+        "en": "Front-end"
+      }
+    },
+    {
+      "id": "fullstack",
+      "label": {
+        "pt": "Full-stack",
+        "en": "Full-stack"
+      }
+    },
+    {
+      "id": "mobile",
+      "label": {
+        "pt": "Mobile",
+        "en": "Mobile"
+      }
+    },
+    {
+      "id": "cli",
+      "label": {
+        "pt": "CLI",
+        "en": "CLI"
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "prime-photos",
+      "title": {
+        "pt": "Prime Photos",
+        "en": "Prime Photos"
+      },
+      "category": "fullstack",
+      "featured": true,
+      "badge": "featured",
+      "desc": {
+        "pt": "E-commerce de fotos polaroid feito em equipe para a Semana do Colégio, em 2025. Tem autenticação com senha criptografada, recuperação por e-mail com token de uso único e prazo de expiração, carrinho que valida estoque e checkout gravado em banco.",
+        "en": "Polaroid photo e-commerce built as a team for the school fair (Semana do Colégio) in 2025. It has authentication with encrypted passwords, email recovery with single-use expiring tokens, a cart that checks stock and a checkout saved to the database."
+      },
+      "tags": [
+        "PHP 8",
+        "PostgreSQL",
+        "JavaScript",
+        "CSS",
+        "PHPMailer"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/Prime-Photos"
+        }
+      ]
+    },
+    {
+      "id": "fiscaliza",
+      "title": {
+        "pt": "Fiscaliza",
+        "en": "Fiscaliza"
+      },
+      "category": "mobile",
+      "featured": false,
+      "badge": "wip",
+      "desc": {
+        "pt": "Trabalho de Conclusão de Curso, em desenvolvimento ao longo de 2026. Aplicativo mobile em Flutter, feito em equipe, para apoiar a atividade de fiscalização de madeireiras da Polícia Ambiental.",
+        "en": "Final capstone project, in development through 2026. A Flutter mobile app built as a team to support the Environmental Police in their inspection work at timber companies."
+      },
+      "tags": [
+        "Dart",
+        "Flutter",
+        "Mobile"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/INF3-EQ1"
+        }
+      ]
+    },
+    {
+      "id": "amigo-oracao",
+      "title": {
+        "pt": "Amigo Oração",
+        "en": "Amigo Oração"
+      },
+      "category": "cli",
+      "featured": false,
+      "badge": null,
+      "desc": {
+        "pt": "Ferramenta de linha de comando que sorteia um Amigo Oração e avisa cada participante por e-mail, de forma individual e sigilosa. O sorteio é conferido antes de qualquer envio e, se o processo for interrompido no meio, dá para retomar sem duplicar mensagem nem mudar o resultado. Node.js puro, sem dependências.",
+        "en": "Command-line tool that runs an Amigo Oração draw (same format as Secret Santa) and notifies each participant by email, individually and confidentially. The draw is verified before anything goes out and, if the process is interrupted midway, it can be resumed without duplicating messages or changing the result. Plain Node.js, no dependencies."
+      },
+      "tags": [
+        "Node.js",
+        "CLI",
+        "SMTP",
+        "Zero-deps"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/amigo-oracao"
+        }
+      ]
+    },
+    {
+      "id": "techcall",
+      "title": {
+        "pt": "TechCall",
+        "en": "TechCall"
+      },
+      "category": "mobile",
+      "featured": false,
+      "badge": "wip",
+      "desc": {
+        "pt": "Aplicativo para técnicos de campo acompanharem seus chamados: ver o que está atribuído, atualizar o status de cada atendimento, registrar o que foi feito no local e anexar fotos da visita. Projeto acadêmico da disciplina de Desenvolvimento Mobile.",
+        "en": "App for field support technicians to manage their service calls: see what is assigned to them, update the status of each job, register what was done on site and attach photos from the visit. Academic project for the Mobile Development course."
+      },
+      "tags": [
+        "React Native",
+        "Expo",
+        "TypeScript"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/techcall"
+        }
+      ]
+    },
+    {
+      "id": "biblioteca-app",
+      "title": {
+        "pt": "Biblioteca App",
+        "en": "Biblioteca App"
+      },
+      "category": "mobile",
+      "featured": false,
+      "badge": null,
+      "desc": {
+        "pt": "Aplicativo para gerenciar o acervo de uma biblioteca: cadastrar livros, editar dados, remover do catálogo e buscar títulos. Projeto acadêmico focado em CRUD e navegação com React Native.",
+        "en": "App for managing a library book collection: register new books, edit details, remove them from the catalog and search titles. Academic project focused on CRUD and navigation with React Native."
+      },
+      "tags": [
+        "React Native",
+        "Expo",
+        "TypeScript"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/biblioteca-app"
+        }
+      ]
+    },
+    {
+      "id": "crud-laravel",
+      "title": {
+        "pt": "CRUD Laravel",
+        "en": "CRUD Laravel"
+      },
+      "category": "fullstack",
+      "featured": false,
+      "badge": null,
+      "desc": {
+        "pt": "CRUD completo em Laravel para praticar o framework de ponta a ponta: rotas, controllers, Eloquent ORM, migrations e as views em Blade.",
+        "en": "A complete CRUD in Laravel to practice the framework end to end: routes, controllers, Eloquent ORM, migrations and Blade views."
+      },
+      "tags": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Eloquent"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/CRUD-Laravel"
+        }
+      ]
+    },
+    {
+      "id": "agenda",
+      "title": {
+        "pt": "Agenda",
+        "en": "Agenda"
+      },
+      "category": "fullstack",
+      "featured": false,
+      "badge": null,
+      "desc": {
+        "pt": "Agenda de contatos em Node.js do curso de JavaScript e TypeScript da Udemy. Cadastro e login com senha criptografada, sessão, validação no servidor, Mongoose para o banco e bundle com webpack.",
+        "en": "Contact manager in Node.js from the Udemy JavaScript and TypeScript course. Sign-up and login with hashed passwords, sessions, server-side validation, Mongoose for the database and a webpack bundle."
+      },
+      "tags": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "EJS",
+        "Webpack"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/agenda"
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "title": {
+        "pt": "Este portfólio",
+        "en": "This portfolio"
+      },
+      "category": "frontend",
+      "featured": false,
+      "badge": null,
+      "desc": {
+        "pt": "O site que você está lendo. HTML, CSS e JavaScript puro, sem build e sem dependências: bilíngue, tema claro e escuro, conteúdo vindo de um JSON editável e formulário de contato que envia sem sair da página.",
+        "en": "The site you are reading. Plain HTML, CSS and JavaScript, no build step and no dependencies: bilingual, light and dark themes, content coming from an editable JSON file and a contact form that submits without leaving the page."
+      },
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "A11y",
+        "GitHub Pages"
+      ],
+      "links": [
+        {
+          "type": "live",
+          "url": "https://vitordev18.github.io/"
+        },
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/vitordev18.github.io"
+        }
+      ]
+    },
+    {
+      "id": "cursos-alura",
+      "title": {
+        "pt": "Cursos Alura",
+        "en": "Cursos Alura"
+      },
+      "category": "frontend",
+      "featured": false,
+      "badge": null,
+      "desc": {
+        "pt": "Repositório com os projetos das formações da Alura: HTML e CSS, JavaScript, lógica de programação e acessibilidade em tecnologias web.",
+        "en": "Repository with the projects from the Alura learning paths: HTML and CSS, JavaScript, programming logic and accessibility in web technologies."
+      },
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "A11y"
+      ],
+      "links": [
+        {
+          "type": "code",
+          "url": "https://github.com/vitordev18/Cursos-Alura"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "moni",
+      "period": {
+        "pt": "desde nov 2025",
+        "en": "since Nov 2025"
+      },
+      "role": {
+        "pt": "Programador Front-end Júnior III",
+        "en": "Junior Front-end Programmer III"
+      },
+      "org": {
+        "pt": "Moni Software · Bauru, SP · Presencial",
+        "en": "Moni Software · Bauru, SP, Brazil · On-site"
+      },
+      "desc": {
+        "pt": "Trabalho numa plataforma de monitoramento de eventos de segurança, dentro de um time de front-end de 10 pessoas. Monto telas com Angular, TypeScript, RxJS, Angular Material e PrimeNG, consumo APIs REST e corrijo bugs em produção.",
+        "en": "I work on a security event monitoring platform, inside a 10-person front-end team. I build screens with Angular, TypeScript, RxJS, Angular Material and PrimeNG, consume REST APIs and fix production bugs."
+      }
+    },
+    {
+      "id": "bracell",
+      "period": {
+        "pt": "mai 2025 a nov 2025",
+        "en": "May 2025 to Nov 2025"
+      },
+      "role": {
+        "pt": "Estágio Técnico",
+        "en": "Technical Internship"
+      },
+      "org": {
+        "pt": "Bracell · Lençóis Paulista, SP · Presencial",
+        "en": "Bracell · Lençóis Paulista, SP, Brazil · On-site"
+      },
+      "desc": {
+        "pt": "Apoiei a análise e o desenho de sistemas, acompanhei rotinas de manutenção de equipamentos industriais e cuidei da coleta e do registro de dados nos sistemas de gestão. Usei VBA e SAP ERP.",
+        "en": "I supported systems analysis and design, followed maintenance routines for industrial equipment and handled data collection and record keeping in the management systems. I used VBA and SAP ERP."
+      }
+    },
+    {
+      "id": "unimed",
+      "period": {
+        "pt": "jun 2023 a abr 2025",
+        "en": "Jun 2023 to Apr 2025"
+      },
+      "role": {
+        "pt": "Assistente Administrativo GRC e Jovem Aprendiz",
+        "en": "GRC Administrative Assistant and Apprentice"
+      },
+      "org": {
+        "pt": "Unimed Bauru · Bauru, SP · Presencial",
+        "en": "Unimed Bauru · Bauru, SP, Brazil · On-site"
+      },
+      "desc": {
+        "pt": "Entrei como Jovem Aprendiz na expedição, organizando documentos e materiais e controlando entradas e saídas. Depois, em governança, risco e controle, apoiei o mapeamento de riscos, as políticas internas e a preparação de documentos e relatórios.",
+        "en": "I started as an apprentice in the shipping department, organizing documents and materials and tracking what came in and out. Later, in governance, risk and control, I supported risk mapping, internal policies and the preparation of documents and reports."
+      }
+    }
+  ],
+  "education": [
+    {
+      "id": "tecnico",
+      "period": {
+        "pt": "fev 2024 a dez 2026",
+        "en": "Feb 2024 to Dec 2026"
+      },
+      "role": {
+        "pt": "Curso Técnico em Informática",
+        "en": "Technical Course in Information Technology"
+      },
+      "org": {
+        "pt": "Colégio Técnico Industrial \"Prof. Isaac Portal Roldán\" · noturno",
+        "en": "Colégio Técnico Industrial \"Prof. Isaac Portal Roldán\" · evening classes"
+      },
+      "desc": {
+        "pt": "Curso em andamento, onde estudo PHP, PostgreSQL e os fundamentos de desenvolvimento.",
+        "en": "Still in progress. This is where I study PHP, PostgreSQL and the fundamentals of development."
+      }
+    },
+    {
+      "id": "etec",
+      "period": {
+        "pt": "jan 2020 a dez 2022",
+        "en": "Jan 2020 to Dec 2022"
+      },
+      "role": {
+        "pt": "Ensino Médio com técnico em Logística",
+        "en": "High school with a technical diploma in Logistics"
+      },
+      "org": {
+        "pt": "ETEC · Escola Técnica Estadual de São Paulo",
+        "en": "ETEC · Escola Técnica Estadual de São Paulo"
+      },
+      "desc": {
+        "pt": "Logística, materiais e cadeia de suprimentos.",
+        "en": "Logistics, materials and supply chain management."
+      }
+    },
+    {
+      "id": "ingles",
+      "period": {
+        "pt": "jan 2014 a dez 2022",
+        "en": "Jan 2014 to Dec 2022"
+      },
+      "role": {
+        "pt": "Inglês, curso avançado",
+        "en": "English, advanced course"
+      },
+      "org": {
+        "pt": "American Corner",
+        "en": "American Corner"
+      },
+      "desc": {
+        "pt": "Curso completo até o nível avançado.",
+        "en": "Full course up to advanced level."
+      }
+    }
+  ],
+  "certificates": [
+    {
+      "id": "a11y",
+      "name": {
+        "pt": "Acessibilidade",
+        "en": "Accessibility"
+      },
+      "meta": {
+        "pt": "4 cursos · 28h · ago 2025",
+        "en": "4 courses · 28h · Aug 2025"
+      },
+      "items": [
+        {
+          "title": "Acessibilidade em HTML, CSS e JavaScript: avaliando e melhorando um projeto com o NVDA",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/38a9ffa1-b7de-459e-89e6-64cea00e72ed",
+          "wip": false
+        },
+        {
+          "title": "Acessibilidade Web: manipulando WAI-ARIA e elementos interativos com JavaScript",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/ac4b26a7-4094-4c1f-97f5-a4e7b478835d",
+          "wip": false
+        },
+        {
+          "title": "Acessibilidade no HTML: escrevendo códigos semânticos para inclusão",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/67b1b5ce-db94-42c3-b633-1c015b1dfdef",
+          "wip": false
+        },
+        {
+          "title": "CSS: ajustando a acessibilidade visual em um projeto",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/e3c5fcf2-6def-424b-9f31-7c74991a4420",
+          "wip": false
+        }
+      ]
+    },
+    {
+      "id": "js",
+      "name": {
+        "pt": "JavaScript",
+        "en": "JavaScript"
+      },
+      "meta": {
+        "pt": "7 cursos · 52h · jun a jul 2025",
+        "en": "7 courses · 52h · Jun to Jul 2025"
+      },
+      "items": [
+        {
+          "title": "JavaScript: evoluindo a sua aplicação com ES6+",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/12b4789a-0605-4404-b819-6c10d1ed6ad4",
+          "wip": false
+        },
+        {
+          "title": "JavaScript: implementando CRUD com requisições HTTP",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/38d1e4c7-4fb1-4213-83a9-3e375a2acb43",
+          "wip": false
+        },
+        {
+          "title": "JavaScript: explorando a manipulação de elementos e da localStorage",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/a13c92a3-3794-497b-94ad-95b91cac2701",
+          "wip": false
+        },
+        {
+          "title": "JavaScript: manipulando elementos no DOM",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/d018c7d0-edea-4531-98e0-3f4d26851584",
+          "wip": false
+        },
+        {
+          "title": "JavaScript: métodos de array",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/17cbfa5d-89a1-4953-9124-5a83eee56b1f",
+          "wip": false
+        },
+        {
+          "title": "JavaScript: entendendo promises e async/await",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/cc5d9b95-42b0-464f-bb92-cf5609e401a4",
+          "wip": false
+        },
+        {
+          "title": "JavaScript: construindo páginas dinâmicas",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/ed3debbe-66b2-4b19-b3df-3c759b8fd9b4",
+          "wip": false
+        }
+      ]
+    },
+    {
+      "id": "htmlcss",
+      "name": {
+        "pt": "HTML e CSS",
+        "en": "HTML and CSS"
+      },
+      "meta": {
+        "pt": "6 cursos · 48h · abr a jun 2025",
+        "en": "6 courses · 48h · Apr to Jun 2025"
+      },
+      "items": [
+        {
+          "title": "HTML e CSS: responsividade com mobile-first",
+          "hours": 12,
+          "url": "https://cursos.alura.com.br/certificate/65684f06-b708-4bf7-9836-fd3fd8eb668f",
+          "wip": false
+        },
+        {
+          "title": "HTML e CSS: praticando HTML/CSS",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/e0127863-20de-4d59-af8c-76332d9b55da",
+          "wip": false
+        },
+        {
+          "title": "HTML e CSS: trabalhando com responsividade e publicação de projetos",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/bfcba4b7-e2e7-41bd-8017-6d2d847dbb29",
+          "wip": false
+        },
+        {
+          "title": "HTML e CSS: cabeçalho, footer e variáveis CSS",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/16d775f4-af1c-4287-9e79-6c539f1730e6",
+          "wip": false
+        },
+        {
+          "title": "HTML e CSS: Classes, posicionamento e Flexbox",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/9e28a47b-b682-452e-8c41-814b502c5d73",
+          "wip": false
+        },
+        {
+          "title": "HTML e CSS: ambientes de desenvolvimento, estrutura de arquivos e tags",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/2f4f3664-648e-42dd-95b7-433d2cb891b3",
+          "wip": false
+        }
+      ]
+    },
+    {
+      "id": "logic",
+      "name": {
+        "pt": "Lógica de programação",
+        "en": "Programming logic"
+      },
+      "meta": {
+        "pt": "3 cursos · 20h · out 2024 a mar 2025",
+        "en": "3 courses · 20h · Oct 2024 to Mar 2025"
+      },
+      "items": [
+        {
+          "title": "Lógica de programação: praticando com desafios",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/e05339eb-fa18-4299-b497-cd68e9471104",
+          "wip": false
+        },
+        {
+          "title": "Lógica de programação: explore funções e listas",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/b17f3897-1422-4765-8235-41376f682dbd",
+          "wip": false
+        },
+        {
+          "title": "Lógica de programação: mergulhe em programação com JavaScript",
+          "hours": 6,
+          "url": "https://cursos.alura.com.br/certificate/1d1565c1-fc33-4523-8a53-54f27a264d56",
+          "wip": false
+        }
+      ]
+    },
+    {
+      "id": "git",
+      "name": {
+        "pt": "Git e GitHub",
+        "en": "Git and GitHub"
+      },
+      "meta": {
+        "pt": "1 curso · 8h · jan 2025",
+        "en": "1 course · 8h · Jan 2025"
+      },
+      "items": [
+        {
+          "title": "Git e GitHub: compartilhando e colaborando em projetos",
+          "hours": 8,
+          "url": "https://cursos.alura.com.br/certificate/7301eb4b-b81d-48ff-b018-cc67d32feb45",
+          "wip": false
+        }
+      ]
+    },
+    {
+      "id": "immersion",
+      "name": {
+        "pt": "Imersão",
+        "en": "Immersion"
+      },
+      "meta": {
+        "pt": "5h · fev 2024",
+        "en": "5h · Feb 2024"
+      },
+      "items": [
+        {
+          "title": "Imersão Front-End",
+          "hours": 5,
+          "url": "https://cursos.alura.com.br/immersion/certificate/97f23619-16cb-4ca0-aa28-e2b23a4b638d",
+          "wip": false
+        }
+      ]
+    },
+    {
+      "id": "wip",
+      "name": {
+        "pt": "Em andamento",
+        "en": "In progress"
+      },
+      "meta": {
+        "pt": "Udemy",
+        "en": "Udemy"
+      },
+      "items": [
+        {
+          "title": "JavaScript e TypeScript do básico ao avançado - JS + TS",
+          "hours": 0,
+          "url": "https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/",
+          "wip": true
+        },
+        {
+          "title": "Angular: O Guia Definitivo das Principais Funcionalidades",
+          "hours": 0,
+          "url": "https://www.udemy.com/course/super-treinamento-de-angular-16-do-basico-ao-avancado/",
+          "wip": true
+        }
+      ]
+    }
+  ]
+}

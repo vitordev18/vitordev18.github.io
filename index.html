@@ -279,12 +279,13 @@
 
             <ul class="stats reveal">
               <li class="stat">
-                <strong class="stat__value">3+</strong>
+                <strong class="stat__value" data-i18n="about.stat.years.value">3+</strong>
                 <span class="stat__label" data-i18n-html="about.stat.years">anos estudando<br>desenvolvimento</span>
               </li>
               <li class="stat">
-                <strong class="stat__value">13</strong>
-                <span class="stat__label" data-i18n-html="about.stat.repos">repositórios<br>públicos</span>
+                <strong class="stat__value" data-i18n="about.stat.repos.value"
+                  data-i18n-count="#projects .project">9</strong>
+                <span class="stat__label" data-i18n-html="about.stat.repos">projetos<br>publicados</span>
               </li>
               <li class="stat">
                 <strong class="stat__value">100%</strong>
@@ -364,34 +365,11 @@
             <p class="section__sub" data-i18n="experience.sub">Onde trabalhei e o que fiz em cada lugar.</p>
           </header>
 
-          <ol class="timeline">
-            <li class="timeline__item reveal">
-              <span class="timeline__period" data-i18n="exp.moni.period">desde nov 2025</span>
-              <h3 class="timeline__role" data-i18n="exp.moni.role">Programador Front-end Júnior III</h3>
-              <p class="timeline__org" data-i18n="exp.moni.org">Moni Software · Bauru, SP · Presencial</p>
-              <p class="timeline__desc" data-i18n="exp.moni.desc">
-                Trabalho numa plataforma de monitoramento de eventos de segurança, dentro de um time de front-end de 10 pessoas. Monto telas com Angular, TypeScript, RxJS, Angular Material e PrimeNG, consumo APIs REST e corrijo bugs em produção.
-              </p>
-            </li>
-
-            <li class="timeline__item reveal">
-              <span class="timeline__period" data-i18n="exp.bracell.period">mai 2025 a nov 2025</span>
-              <h3 class="timeline__role" data-i18n="exp.bracell.role">Estágio Técnico</h3>
-              <p class="timeline__org" data-i18n="exp.bracell.org">Bracell · Lençóis Paulista, SP · Presencial</p>
-              <p class="timeline__desc" data-i18n="exp.bracell.desc">
-                Apoiei a análise e o desenho de sistemas, acompanhei rotinas de manutenção de equipamentos industriais e cuidei da coleta e do registro de dados nos sistemas de gestão. Usei VBA e SAP ERP.
-              </p>
-            </li>
-
-            <li class="timeline__item reveal">
-              <span class="timeline__period" data-i18n="exp.unimed.period">jun 2023 a abr 2025</span>
-              <h3 class="timeline__role" data-i18n="exp.unimed.role">Assistente Administrativo GRC e Jovem Aprendiz</h3>
-              <p class="timeline__org" data-i18n="exp.unimed.org">Unimed Bauru · Bauru, SP · Presencial</p>
-              <p class="timeline__desc" data-i18n="exp.unimed.desc">
-                Entrei como Jovem Aprendiz na expedição, organizando documentos e materiais e controlando entradas e saídas. Depois, em governança, risco e controle, apoiei o mapeamento de riscos, as políticas internas e a preparação de documentos e relatórios.
-              </p>
-            </li>
-          </ol>
+          <ol class="timeline" id="experience-list"></ol>
+            <noscript>
+              <p class="no-js-note">Esta lista precisa de JavaScript. A trajetória completa está no
+                <a href="https://www.linkedin.com/in/vitor-rodrigues-ferreira-87662a212/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </noscript>
         </div>
       </div>
     </section>
@@ -407,127 +385,21 @@
             <p class="section__sub" data-i18n="education.sub">Onde estudei e o que estou estudando agora.</p>
           </header>
 
-          <ol class="timeline">
-            <li class="timeline__item reveal">
-              <span class="timeline__period" data-i18n="edu.tecnico.period">fev 2024 a dez 2026</span>
-              <h3 class="timeline__role" data-i18n="edu.tecnico.role">Curso Técnico em Informática</h3>
-              <p class="timeline__org" data-i18n="edu.tecnico.org">Colégio Técnico Industrial "Prof. Isaac Portal Roldán" · noturno</p>
-              <p class="timeline__desc" data-i18n="edu.tecnico.desc">
-                Curso em andamento, onde estudo PHP, PostgreSQL e os fundamentos de desenvolvimento.
-              </p>
-            </li>
-
-            <li class="timeline__item reveal">
-              <span class="timeline__period" data-i18n="edu.etec.period">jan 2020 a dez 2022</span>
-              <h3 class="timeline__role" data-i18n="edu.etec.role">Ensino Médio com técnico em Logística</h3>
-              <p class="timeline__org" data-i18n="edu.etec.org">ETEC · Escola Técnica Estadual de São Paulo</p>
-              <p class="timeline__desc" data-i18n="edu.etec.desc">
-                Logística, materiais e cadeia de suprimentos.
-              </p>
-            </li>
-
-            <li class="timeline__item reveal">
-              <span class="timeline__period" data-i18n="edu.ingles.period">jan 2014 a dez 2022</span>
-              <h3 class="timeline__role" data-i18n="edu.ingles.role">Inglês, curso avançado</h3>
-              <p class="timeline__org">American Corner</p>
-              <p class="timeline__desc" data-i18n="edu.ingles.desc">
-                Curso completo até o nível avançado.
-              </p>
-            </li>
-          </ol>
+          <ol class="timeline" id="education-list"></ol>
+            <noscript>
+              <p class="no-js-note">Esta lista precisa de JavaScript. A formação completa está no
+                <a href="https://www.linkedin.com/in/vitor-rodrigues-ferreira-87662a212/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </noscript>
           <div class="certs reveal">
             <h3 class="certs__title" data-i18n="certs.title">Certificados</h3>
             <p class="certs__summary" data-i18n="certs.summary"
               data-i18n-count=".cert:not(.cert--wip)">22 cursos · 161 horas na Alura</p>
 
-            <ul class="cert-groups">
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.a11y">Acessibilidade</span>
-                  <span class="cert-group__meta" data-i18n="certs.a11y.meta">4 cursos · 28h · ago 2025</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/38a9ffa1-b7de-459e-89e6-64cea00e72ed" target="_blank" rel="noopener noreferrer">Acessibilidade em HTML, CSS e JavaScript: avaliando e melhorando um projeto com o NVDA</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/ac4b26a7-4094-4c1f-97f5-a4e7b478835d" target="_blank" rel="noopener noreferrer">Acessibilidade Web: manipulando WAI-ARIA e elementos interativos com JavaScript</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/67b1b5ce-db94-42c3-b633-1c015b1dfdef" target="_blank" rel="noopener noreferrer">Acessibilidade no HTML: escrevendo códigos semânticos para inclusão</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/e3c5fcf2-6def-424b-9f31-7c74991a4420" target="_blank" rel="noopener noreferrer">CSS: ajustando a acessibilidade visual em um projeto</a></li>
-                </ul>
-              </li>
-
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.js">JavaScript</span>
-                  <span class="cert-group__meta" data-i18n="certs.js.meta">7 cursos · 52h · jun a jul 2025</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/12b4789a-0605-4404-b819-6c10d1ed6ad4" target="_blank" rel="noopener noreferrer">JavaScript: evoluindo a sua aplicação com ES6+</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/38d1e4c7-4fb1-4213-83a9-3e375a2acb43" target="_blank" rel="noopener noreferrer">JavaScript: implementando CRUD com requisições HTTP</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/a13c92a3-3794-497b-94ad-95b91cac2701" target="_blank" rel="noopener noreferrer">JavaScript: explorando a manipulação de elementos e da localStorage</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/d018c7d0-edea-4531-98e0-3f4d26851584" target="_blank" rel="noopener noreferrer">JavaScript: manipulando elementos no DOM</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/17cbfa5d-89a1-4953-9124-5a83eee56b1f" target="_blank" rel="noopener noreferrer">JavaScript: métodos de array</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/cc5d9b95-42b0-464f-bb92-cf5609e401a4" target="_blank" rel="noopener noreferrer">JavaScript: entendendo promises e async/await</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/ed3debbe-66b2-4b19-b3df-3c759b8fd9b4" target="_blank" rel="noopener noreferrer">JavaScript: construindo páginas dinâmicas</a></li>
-                </ul>
-              </li>
-
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.htmlcss">HTML e CSS</span>
-                  <span class="cert-group__meta" data-i18n="certs.htmlcss.meta">6 cursos · 48h · abr a jun 2025</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert" data-hours="12" href="https://cursos.alura.com.br/certificate/65684f06-b708-4bf7-9836-fd3fd8eb668f" target="_blank" rel="noopener noreferrer">HTML e CSS: responsividade com mobile-first</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/e0127863-20de-4d59-af8c-76332d9b55da" target="_blank" rel="noopener noreferrer">HTML e CSS: praticando HTML/CSS</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/bfcba4b7-e2e7-41bd-8017-6d2d847dbb29" target="_blank" rel="noopener noreferrer">HTML e CSS: trabalhando com responsividade e publicação de projetos</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/16d775f4-af1c-4287-9e79-6c539f1730e6" target="_blank" rel="noopener noreferrer">HTML e CSS: cabeçalho, footer e variáveis CSS</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/9e28a47b-b682-452e-8c41-814b502c5d73" target="_blank" rel="noopener noreferrer">HTML e CSS: Classes, posicionamento e Flexbox</a></li>
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/2f4f3664-648e-42dd-95b7-433d2cb891b3" target="_blank" rel="noopener noreferrer">HTML e CSS: ambientes de desenvolvimento, estrutura de arquivos e tags</a></li>
-                </ul>
-              </li>
-
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.logic">Lógica de programação</span>
-                  <span class="cert-group__meta" data-i18n="certs.logic.meta">3 cursos · 20h · out 2024 a mar 2025</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/e05339eb-fa18-4299-b497-cd68e9471104" target="_blank" rel="noopener noreferrer">Lógica de programação: praticando com desafios</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/b17f3897-1422-4765-8235-41376f682dbd" target="_blank" rel="noopener noreferrer">Lógica de programação: explore funções e listas</a></li>
-                  <li><a class="cert" data-hours="6" href="https://cursos.alura.com.br/certificate/1d1565c1-fc33-4523-8a53-54f27a264d56" target="_blank" rel="noopener noreferrer">Lógica de programação: mergulhe em programação com JavaScript</a></li>
-                </ul>
-              </li>
-
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.git">Git e GitHub</span>
-                  <span class="cert-group__meta" data-i18n="certs.git.meta">1 curso · 8h · jan 2025</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert" data-hours="8" href="https://cursos.alura.com.br/certificate/7301eb4b-b81d-48ff-b018-cc67d32feb45" target="_blank" rel="noopener noreferrer">Git e GitHub: compartilhando e colaborando em projetos</a></li>
-                </ul>
-              </li>
-
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.immersion">Imersão</span>
-                  <span class="cert-group__meta" data-i18n="certs.immersion.meta">5h · fev 2024</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert" data-hours="5" href="https://cursos.alura.com.br/immersion/certificate/97f23619-16cb-4ca0-aa28-e2b23a4b638d" target="_blank" rel="noopener noreferrer">Imersão Front-End</a></li>
-                </ul>
-              </li>
-
-              <li class="cert-group">
-                <p class="cert-group__head">
-                  <span class="cert-group__name" data-i18n="certs.wip">Em andamento</span>
-                  <span class="cert-group__meta">Udemy</span>
-                </p>
-                <ul class="cert-list">
-                  <li><a class="cert cert--wip" href="https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/" target="_blank" rel="noopener noreferrer">JavaScript e TypeScript do básico ao avançado - JS + TS</a></li>
-                  <li><a class="cert cert--wip" href="https://www.udemy.com/course/super-treinamento-de-angular-16-do-basico-ao-avancado/" target="_blank" rel="noopener noreferrer">Angular: O Guia Definitivo das Principais Funcionalidades</a></li>
-                </ul>
-              </li>
-            </ul>
+            <ul class="cert-groups" id="cert-groups"></ul>
+            <noscript>
+              <p class="no-js-note">Esta lista precisa de JavaScript. Os certificados estão no
+                <a href="https://www.linkedin.com/in/vitor-rodrigues-ferreira-87662a212/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </noscript>
           </div>
         </div>
       </div>
@@ -544,143 +416,13 @@
           </header>
 
           <div class="filters reveal" id="filters" role="tablist" data-i18n-attr="aria-label:a11y.filters"
-            aria-label="Filtrar projetos por categoria" hidden>
-            <button class="filter is-active" type="button" role="tab" aria-selected="true" data-filter="all"
-              data-i18n="projects.filter.all">Todos</button>
-            <button class="filter" type="button" role="tab" aria-selected="false" data-filter="frontend">Front-end</button>
-            <button class="filter" type="button" role="tab" aria-selected="false" data-filter="fullstack">Full-stack</button>
-            <button class="filter" type="button" role="tab" aria-selected="false" data-filter="mobile">Mobile</button>
-          </div>
+            aria-label="Filtrar projetos por categoria" hidden></div>
 
-          <div class="projects" id="projects">
-            <article class="project project--featured reveal" data-category="fullstack">
-              <header class="project__head">
-                <span class="project__badge" data-i18n="projects.badge">Destaque</span>
-                <h3 class="project__title">Prime Photos</h3>
-              </header>
-              <p class="project__desc" data-i18n="projects.prime.desc">
-                E-commerce de fotos polaroid feito em equipe para a Semana do Colégio, em 2025. Tem autenticação com senha criptografada, recuperação por e-mail com token de uso único e prazo de expiração, carrinho que valida estoque e checkout gravado em banco.
-              </p>
-              <ul class="tags tags--sm">
-                <li class="tag">PHP 8</li>
-                <li class="tag">PostgreSQL</li>
-                <li class="tag">JavaScript</li>
-                <li class="tag">CSS</li>
-                <li class="tag">PHPMailer</li>
-              </ul>
-              <footer class="project__links">
-                <a class="link" href="https://github.com/vitordev18/Prime-Photos" target="_blank" rel="noopener noreferrer">
-                  <span data-i18n="projects.link.code">Código</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                </a>
-              </footer>
-            </article>
-
-            <article class="project reveal" data-category="mobile">
-              <header class="project__head">
-                <span class="project__badge" data-i18n="projects.wip">Em andamento</span>
-                <h3 class="project__title" data-i18n="projects.tcc.title">Fiscaliza</h3>
-              </header>
-              <p class="project__desc" data-i18n="projects.tcc.desc">
-                Trabalho de Conclusão de Curso, em desenvolvimento ao longo de 2026. Aplicativo mobile em Flutter com build para Android, iOS e Web.
-              </p>
-              <ul class="tags tags--sm">
-                <li class="tag">Dart</li>
-                <li class="tag">Flutter</li>
-                <li class="tag">Mobile</li>
-              </ul>
-              <footer class="project__links">
-                <a class="link" href="https://github.com/vitordev18/INF3-EQ1" target="_blank" rel="noopener noreferrer">
-                  <span data-i18n="projects.link.code">Código</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                </a>
-              </footer>
-            </article>
-
-            <article class="project reveal" data-category="frontend">
-              <header class="project__head">
-                <h3 class="project__title">AluraBooks</h3>
-              </header>
-              <p class="project__desc" data-i18n="projects.alurabooks.desc">
-                Landing page de uma livraria online, feita mobile-first. Exercício de media queries e de layout com Flexbox e Grid.
-              </p>
-              <ul class="tags tags--sm">
-                <li class="tag">HTML</li>
-                <li class="tag">CSS</li>
-                <li class="tag">Mobile-first</li>
-              </ul>
-              <footer class="project__links">
-                <a class="link" href="https://github.com/vitordev18/AluraBooks" target="_blank" rel="noopener noreferrer">
-                  <span data-i18n="projects.link.code">Código</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                </a>
-              </footer>
-            </article>
-
-            <article class="project reveal" data-category="frontend">
-              <header class="project__head">
-                <h3 class="project__title">Habit Tracker</h3>
-              </header>
-              <p class="project__desc" data-i18n="projects.habit.desc">
-                Interface para acompanhar hábitos, feita durante o NLW da Rocketseat. Tem grid de progresso e estilização utilitária.
-              </p>
-              <ul class="tags tags--sm">
-                <li class="tag">HTML</li>
-                <li class="tag">CSS</li>
-                <li class="tag">JavaScript</li>
-              </ul>
-              <footer class="project__links">
-                <a class="link" href="https://vitordev18.github.io/nlw-setup" target="_blank" rel="noopener noreferrer">
-                  <span data-i18n="projects.link.live">Ver online</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                </a>
-                <a class="link link--muted" href="https://github.com/vitordev18/nlw-setup" target="_blank" rel="noopener noreferrer"
-                  data-i18n="projects.link.code">
-                  Código
-                </a>
-              </footer>
-            </article>
-
-            <article class="project reveal" data-category="frontend">
-              <header class="project__head">
-                <h3 class="project__title" data-i18n="projects.imersao.title">Imersão Front-end</h3>
-              </header>
-              <p class="project__desc" data-i18n="projects.imersao.desc">
-                Projeto da Imersão Front-end da Alura: uma interface inteira montada a partir de um layout do Figma, com componentes de CSS reutilizáveis.
-              </p>
-              <ul class="tags tags--sm">
-                <li class="tag">HTML</li>
-                <li class="tag">CSS</li>
-                <li class="tag">JavaScript</li>
-              </ul>
-              <footer class="project__links">
-                <a class="link" href="https://github.com/vitordev18/imersao-front-end" target="_blank" rel="noopener noreferrer">
-                  <span data-i18n="projects.link.code">Código</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                </a>
-              </footer>
-            </article>
-
-            <article class="project reveal" data-category="frontend">
-              <header class="project__head">
-                <h3 class="project__title" data-i18n="projects.numero.title">Jogo do Número Secreto</h3>
-              </header>
-              <p class="project__desc" data-i18n="projects.numero.desc">
-                Jogo de adivinhação no navegador. Manipulação de DOM, controle de estado, sorteio que não repete número e síntese de voz para acessibilidade.
-              </p>
-              <ul class="tags tags--sm">
-                <li class="tag">JavaScript</li>
-                <li class="tag">DOM</li>
-                <li class="tag">Web Speech API</li>
-              </ul>
-              <footer class="project__links">
-                <a class="link" href="https://github.com/vitordev18/jogo-do-numero-secreto" target="_blank" rel="noopener noreferrer">
-                  <span data-i18n="projects.link.code">Código</span>
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
-                </a>
-              </footer>
-            </article>
-          </div>
+          <div class="projects" id="projects"></div>
+            <noscript>
+              <p class="no-js-note">Esta lista precisa de JavaScript. Os projetos também estão em
+                <a href="https://github.com/vitordev18" target="_blank" rel="noopener noreferrer">github.com/vitordev18</a>.</p>
+            </noscript>
 
           <p class="projects__more reveal">
             <a class="link link--lg" href="https://github.com/vitordev18?tab=repositories" target="_blank" rel="noopener noreferrer">
@@ -799,6 +541,7 @@
   </footer>
 
   <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/content.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 

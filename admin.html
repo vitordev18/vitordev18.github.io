@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor de conteúdo — Portfólio</title>
+
+  <!-- Página de trabalho: não deve aparecer em buscador nem em prévia de link. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="theme-color" content="#08090a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f7f5" media="(prefers-color-scheme: light)">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='system-ui'>&#9998;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+  <!-- O editor herda os tokens de cor e tipografia do site. -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (error) { saved = null; }
+
+      var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+    })();
+  </script>
+</head>
+
+<body class="admin">
+  <header class="admin-bar">
+    <div class="admin-bar__inner">
+      <div class="admin-bar__id">
+        <p class="admin-bar__eyebrow">Portfólio</p>
+        <h1 class="admin-bar__title">Editor de conteúdo</h1>
+      </div>
+
+      <p class="admin-state" id="state" role="status" aria-live="polite">Carregando…</p>
+
+      <div class="admin-bar__actions">
+        <button class="btn btn--ghost btn--sm" type="button" id="import-btn">Abrir JSON</button>
+        <input type="file" id="import-file" accept="application/json,.json" hidden>
+
+        <button class="btn btn--ghost btn--sm" type="button" id="discard-btn" hidden>Descartar rascunho</button>
+
+        <button class="btn btn--primary btn--sm" type="button" id="export-btn">Baixar content.json</button>
+
+        <button class="icon-btn" type="button" id="theme-toggle" aria-label="Alternar tema claro e escuro">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main" id="main">
+    <p class="admin-warning">
+      <strong>Este editor é local.</strong> Ele altera só a cópia guardada no seu navegador e gera um arquivo
+      para download — não escreve no repositório e não tem senha. Para publicar, baixe o
+      <code>content.json</code>, substitua <code>assets/data/content.json</code> e faça o commit.
+    </p>
+
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Tipo de conteúdo"></nav>
+
+    <div id="panels"></div>
+  </main>
+
+  <!-- Formulário de edição. Os campos são gerados conforme o tipo. -->
+  <dialog class="editor" id="editor" aria-labelledby="editor-title">
+    <form class="editor__form" id="editor-form">
+      <header class="editor__head">
+        <h2 class="editor__title" id="editor-title">Editar</h2>
+        <button class="icon-btn" type="button" id="editor-close" aria-label="Fechar sem salvar">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </header>
+
+      <div class="editor__body" id="editor-fields"></div>
+
+      <footer class="editor__foot">
+        <p class="editor__error" id="editor-error" role="alert"></p>
+        <div class="editor__buttons">
+          <button class="btn btn--ghost btn--sm" type="button" id="editor-cancel">Cancelar</button>
+          <button class="btn btn--primary btn--sm" type="submit">Salvar</button>
+        </div>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="assets/js/admin.js" defer></script>
+</body>
+
+</html>

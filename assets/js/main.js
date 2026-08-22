@@ -33,13 +33,42 @@
 
   const I18N = window.I18N || { pt: {}, en: {} };
 
+  /*
+    Valores que envelhecem sozinhos. Ficam como {age} e {years} dentro das
+    strings do i18n.js e são calculados a cada carregamento da página, para
+    não precisarem ser corrigidos à mão todo aniversário.
+  */
+  const BIRTH_DATE = '2004-11-18';
+  const STUDY_START = '2023-01-04';
+
+  /** Anos completos entre uma data ISO e hoje. */
+  function yearsSince(iso) {
+    const [year, month, day] = iso.split('-').map(Number);
+    const today = new Date();
+    const monthsPassed = today.getMonth() + 1 - month;
+    let years = today.getFullYear() - year;
+
+    // Ainda não chegou a data neste ano? Então falta completar mais um.
+    if (monthsPassed < 0 || (monthsPassed === 0 && today.getDate() < day)) years -= 1;
+
+    return Math.max(years, 0);
+  }
+
+  const TOKENS = {
+    '{age}': String(yearsSince(BIRTH_DATE)),
+    '{years}': String(yearsSince(STUDY_START)),
+  };
+
+  const fillTokens = (text) =>
+    Object.keys(TOKENS).reduce((acc, token) => acc.split(token).join(TOKENS[token]), text);
+
   let currentLang = DEFAULT_LANG;
 
   const t = (key) => {
     const dict = I18N[currentLang] || I18N[DEFAULT_LANG];
     const value = dict[key] !== undefined ? dict[key] : I18N[DEFAULT_LANG][key];
 
-    return value !== undefined ? value : key;
+    return fillTokens(value !== undefined ? value : key);
   };
 
   const resolveLang = () => {
@@ -271,8 +300,14 @@
   }
 
   function initReveal() {
-    const items = $$('.reveal');
+    // Marca o que já foi observado: a função roda duas vezes, uma no
+    // carregamento e outra quando o content.js monta os cards do JSON.
+    const items = $$('.reveal').filter((item) => !item.dataset.revealBound);
     if (!items.length) return;
+
+    items.forEach((item) => {
+      item.dataset.revealBound = '1';
+    });
 
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       items.forEach((item) => item.classList.add('is-visible'));
@@ -516,14 +551,36 @@
     if (year) year.textContent = String(new Date().getFullYear());
   }
 
+  /*
+    Inicialização em duas etapas.
+
+    A primeira roda de imediato, para que tema, menu, idioma e formulário
+    funcionem sem depender de rede. A segunda espera o content.js montar
+    projetos, experiência, formação e certificados a partir do JSON — só aí
+    faz sentido traduzir esses nós, contá-los e ligar os filtros.
+  */
   initReveal();
   initI18n();
   initTheme();
   initMobileMenu();
   initHeaderScroll();
-  initScrollSpy();
-  initProjectFilters();
   initContactForm();
   initContrast();
   initYear();
+
+  function initDynamicContent() {
+    applyTranslations();
+    initReveal();
+    initScrollSpy();
+    initProjectFilters();
+  }
+
+  const content = window.PortfolioContent;
+
+  // O segundo argumento cobre a falha: mesmo sem o JSON, o resto liga.
+  if (content && content.ready) {
+    content.ready.then(initDynamicContent, initDynamicContent);
+  } else {
+    initDynamicContent();
+  }
 })();

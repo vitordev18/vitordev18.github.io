@@ -22,7 +22,7 @@ window.I18N = {
 
     'a11y.spec': 'Ficha técnica',
     'hero.portrait': 'Vitor Rodrigues Ferreira',
-    'meta.about': '21 anos · front-end',
+    'meta.about': '{age} anos · front-end',
     'meta.stack': '{n} tecnologias',
     'meta.projects': '{n} repositórios',
     'meta.contact': '{n} canais diretos',
@@ -47,13 +47,15 @@ window.I18N = {
 
     'about.title': 'Sobre',
     'about.p1':
-      'Tenho 21 anos e sou <strong>Desenvolvedor Front-end</strong>. Meu trabalho é pegar um layout e transformar em interface que funciona: marcação semântica, <em>mobile-first</em> e atenção a performance e acessibilidade.',
+      'Tenho {age} anos e sou <strong>Desenvolvedor Front-end</strong>. Meu trabalho é pegar um layout e transformar em interface que funciona: marcação semântica, <em>mobile-first</em> e atenção a performance e acessibilidade.',
     'about.p2':
       'Trabalho na <strong>Moni Software</strong> como Desenvolvedor Front-end Júnior. Lá desenvolvo e mantenho interfaces web com TypeScript e Angular.',
     'about.p3':
       'Também mexi com PHP, Laravel e PostgreSQL em projetos acadêmicos <em>full-stack</em>. Isso ajuda na hora de conversar com o back-end e entender o resto do produto.',
+    'about.stat.years.value': '{years}+',
     'about.stat.years': 'anos estudando<br>desenvolvimento',
-    'about.stat.repos': 'repositórios<br>públicos',
+    'about.stat.repos.value': '{n}',
+    'about.stat.repos': 'projetos<br>publicados',
     'about.stat.layouts': 'layouts<br>mobile-first',
 
     'stack.title': 'Stack',
@@ -66,58 +68,17 @@ window.I18N = {
     'stack.tag.rest': 'APIs REST',
     'stack.tag.agile': 'Metodologias Ágeis',
 
-
     'nav.experience': 'Experiência',
     'nav.education': 'Formação',
     'meta.experience': '{n} empresas',
     'meta.education': '{n} formações',
     'experience.title': 'Experiência',
     'experience.sub': 'Onde trabalhei e o que fiz em cada lugar.',
-    'exp.moni.period': 'desde nov 2025',
-    'exp.moni.role': 'Programador Front-end Júnior III',
-    'exp.moni.org': 'Moni Software · Bauru, SP · Presencial',
-    'exp.moni.desc':
-      'Trabalho numa plataforma de monitoramento de eventos de segurança, dentro de um time de front-end de 10 pessoas. Monto telas com Angular, TypeScript, RxJS, Angular Material e PrimeNG, consumo APIs REST e corrijo bugs em produção.',
-    'exp.bracell.period': 'mai 2025 a nov 2025',
-    'exp.bracell.role': 'Estágio Técnico',
-    'exp.bracell.org': 'Bracell · Lençóis Paulista, SP · Presencial',
-    'exp.bracell.desc':
-      'Apoiei a análise e o desenho de sistemas, acompanhei rotinas de manutenção de equipamentos industriais e cuidei da coleta e do registro de dados nos sistemas de gestão. Usei VBA e SAP ERP.',
-    'exp.unimed.period': 'jun 2023 a abr 2025',
-    'exp.unimed.role': 'Assistente Administrativo GRC e Jovem Aprendiz',
-    'exp.unimed.org': 'Unimed Bauru · Bauru, SP · Presencial',
-    'exp.unimed.desc':
-      'Entrei como Jovem Aprendiz na expedição, organizando documentos e materiais e controlando entradas e saídas. Depois, em governança, risco e controle, apoiei o mapeamento de riscos, as políticas internas e a preparação de documentos e relatórios.',
     'education.title': 'Formação',
     'education.sub': 'Onde estudei e o que estou estudando agora.',
-    'edu.tecnico.period': 'fev 2024 a dez 2026',
-    'edu.tecnico.role': 'Curso Técnico em Informática',
-    'edu.tecnico.org': 'Colégio Técnico Industrial \"Prof. Isaac Portal Roldán\" · noturno',
-    'edu.tecnico.desc':
-      'Curso em andamento, onde estudo PHP, PostgreSQL e os fundamentos de desenvolvimento.',
-    'edu.etec.period': 'jan 2020 a dez 2022',
-    'edu.etec.role': 'Ensino Médio com técnico em Logística',
-    'edu.etec.org': 'ETEC · Escola Técnica Estadual de São Paulo',
-    'edu.etec.desc': 'Logística, materiais e cadeia de suprimentos.',
-    'edu.ingles.period': 'jan 2014 a dez 2022',
-    'edu.ingles.role': 'Inglês, curso avançado',
-    'edu.ingles.desc': 'Curso completo até o nível avançado.',
 
     'certs.title': 'Certificados',
     'certs.summary': '{n} cursos · {h} horas na Alura',
-    'certs.a11y': 'Acessibilidade',
-    'certs.a11y.meta': '4 cursos · 28h · ago 2025',
-    'certs.js': 'JavaScript',
-    'certs.js.meta': '7 cursos · 52h · jun a jul 2025',
-    'certs.htmlcss': 'HTML e CSS',
-    'certs.htmlcss.meta': '6 cursos · 48h · abr a jun 2025',
-    'certs.logic': 'Lógica de programação',
-    'certs.logic.meta': '3 cursos · 20h · out 2024 a mar 2025',
-    'certs.git': 'Git e GitHub',
-    'certs.git.meta': '1 curso · 8h · jan 2025',
-    'certs.immersion': 'Imersão',
-    'certs.immersion.meta': '5h · fev 2024',
-    'certs.wip': 'Em andamento',
 
     'projects.title': 'Projetos',
     'projects.sub': 'Uma seleção do que construí, de exercício de curso a aplicação completa.',
@@ -127,21 +88,6 @@ window.I18N = {
     'projects.link.code': 'Código',
     'projects.link.live': 'Ver online',
     'projects.more': 'Ver todos os repositórios no GitHub',
-    'projects.prime.desc':
-      'E-commerce de fotos polaroid feito em equipe para a Semana do Colégio, em 2025. Tem autenticação com senha criptografada, recuperação por e-mail com token de uso único e prazo de expiração, carrinho que valida estoque e checkout gravado em banco.',
-    'projects.tcc.title': 'Fiscaliza',
-    'projects.tcc.desc':
-      'Trabalho de Conclusão de Curso, em desenvolvimento ao longo de 2026. Aplicativo mobile em Flutter com build para Android, iOS e Web.',
-    'projects.alurabooks.desc':
-      'Landing page de uma livraria online, feita mobile-first. Exercício de media queries e de layout com Flexbox e Grid.',
-    'projects.habit.desc':
-      'Interface para acompanhar hábitos, feita durante o NLW da Rocketseat. Tem grid de progresso e estilização utilitária.',
-    'projects.imersao.title': 'Imersão Front-end',
-    'projects.imersao.desc':
-      'Projeto da Imersão Front-end da Alura: uma interface inteira montada a partir de um layout do Figma, com componentes de CSS reutilizáveis.',
-    'projects.numero.title': 'Jogo do Número Secreto',
-    'projects.numero.desc':
-      'Jogo de adivinhação no navegador. Manipulação de DOM, controle de estado, sorteio que não repete número e síntese de voz para acessibilidade.',
 
     'contact.title': 'Contato',
     'contact.sub': 'Estou aberto a oportunidades como Desenvolvedor Front-end. Vamos conversar?',
@@ -189,7 +135,7 @@ window.I18N = {
 
     'a11y.spec': 'Spec sheet',
     'hero.portrait': 'Vitor Rodrigues Ferreira',
-    'meta.about': '21 years old · front-end',
+    'meta.about': '{age} years old · front-end',
     'meta.stack': '{n} technologies',
     'meta.projects': '{n} repositories',
     'meta.contact': '{n} direct channels',
@@ -214,13 +160,15 @@ window.I18N = {
 
     'about.title': 'About',
     'about.p1':
-      "I'm 21 and I work as a <strong>Front-end Developer</strong>. My job is taking a layout and turning it into an interface that works: semantic markup, <em>mobile-first</em>, and care for performance and accessibility.",
+      "I'm {age} and I work as a <strong>Front-end Developer</strong>. My job is taking a layout and turning it into an interface that works: semantic markup, <em>mobile-first</em>, and care for performance and accessibility.",
     'about.p2':
       'I work at <strong>Moni Software</strong> as a Junior Front-end Developer. There I build and maintain web interfaces with TypeScript and Angular.',
     'about.p3':
       "I've also worked with PHP, Laravel and PostgreSQL on academic <em>full-stack</em> projects. It helps when I need to talk to the back-end and understand the rest of the product.",
+    'about.stat.years.value': '{years}+',
     'about.stat.years': 'years studying<br>development',
-    'about.stat.repos': 'public<br>repositories',
+    'about.stat.repos.value': '{n}',
+    'about.stat.repos': 'projects<br>published',
     'about.stat.layouts': 'mobile-first<br>layouts',
 
     'stack.title': 'Stack',
@@ -233,58 +181,17 @@ window.I18N = {
     'stack.tag.rest': 'REST APIs',
     'stack.tag.agile': 'Agile methodologies',
 
-
     'nav.experience': 'Experience',
     'nav.education': 'Education',
     'meta.experience': '{n} companies',
     'meta.education': '{n} programs',
     'experience.title': 'Experience',
     'experience.sub': 'Where I have worked and what I did in each place.',
-    'exp.moni.period': 'since Nov 2025',
-    'exp.moni.role': 'Junior Front-end Programmer III',
-    'exp.moni.org': 'Moni Software · Bauru, SP, Brazil · On-site',
-    'exp.moni.desc':
-      'I work on a security event monitoring platform, inside a 10-person front-end team. I build screens with Angular, TypeScript, RxJS, Angular Material and PrimeNG, consume REST APIs and fix production bugs.',
-    'exp.bracell.period': 'May 2025 to Nov 2025',
-    'exp.bracell.role': 'Technical Internship',
-    'exp.bracell.org': 'Bracell · Lençóis Paulista, SP, Brazil · On-site',
-    'exp.bracell.desc':
-      'I supported systems analysis and design, followed maintenance routines for industrial equipment and handled data collection and record keeping in the management systems. I used VBA and SAP ERP.',
-    'exp.unimed.period': 'Jun 2023 to Apr 2025',
-    'exp.unimed.role': 'GRC Administrative Assistant and Apprentice',
-    'exp.unimed.org': 'Unimed Bauru · Bauru, SP, Brazil · On-site',
-    'exp.unimed.desc':
-      'I started as an apprentice in the shipping department, organizing documents and materials and tracking what came in and out. Later, in governance, risk and control, I supported risk mapping, internal policies and the preparation of documents and reports.',
     'education.title': 'Education',
     'education.sub': 'Where I studied and what I am studying now.',
-    'edu.tecnico.period': 'Feb 2024 to Dec 2026',
-    'edu.tecnico.role': 'Technical Course in Information Technology',
-    'edu.tecnico.org': 'Colégio Técnico Industrial \"Prof. Isaac Portal Roldán\" · evening classes',
-    'edu.tecnico.desc':
-      'Still in progress. This is where I study PHP, PostgreSQL and the fundamentals of development.',
-    'edu.etec.period': 'Jan 2020 to Dec 2022',
-    'edu.etec.role': 'High school with a technical diploma in Logistics',
-    'edu.etec.org': 'ETEC · Escola Técnica Estadual de São Paulo',
-    'edu.etec.desc': 'Logistics, materials and supply chain management.',
-    'edu.ingles.period': 'Jan 2014 to Dec 2022',
-    'edu.ingles.role': 'English, advanced course',
-    'edu.ingles.desc': 'Full course up to advanced level.',
 
     'certs.title': 'Certificates',
     'certs.summary': '{n} courses · {h} hours on Alura',
-    'certs.a11y': 'Accessibility',
-    'certs.a11y.meta': '4 courses · 28h · Aug 2025',
-    'certs.js': 'JavaScript',
-    'certs.js.meta': '7 courses · 52h · Jun to Jul 2025',
-    'certs.htmlcss': 'HTML and CSS',
-    'certs.htmlcss.meta': '6 courses · 48h · Apr to Jun 2025',
-    'certs.logic': 'Programming logic',
-    'certs.logic.meta': '3 courses · 20h · Oct 2024 to Mar 2025',
-    'certs.git': 'Git and GitHub',
-    'certs.git.meta': '1 course · 8h · Jan 2025',
-    'certs.immersion': 'Immersion',
-    'certs.immersion.meta': '5h · Feb 2024',
-    'certs.wip': 'In progress',
 
     'projects.title': 'Projects',
     'projects.sub': "A selection of what I've built, from course exercises to a complete application.",
@@ -294,21 +201,6 @@ window.I18N = {
     'projects.link.code': 'Code',
     'projects.link.live': 'Live demo',
     'projects.more': 'See all repositories on GitHub',
-    'projects.prime.desc':
-      'Polaroid photo e-commerce built as a team for the school fair (Semana do Colégio) in 2025. It has authentication with encrypted passwords, email recovery with single-use expiring tokens, a cart that checks stock and a checkout saved to the database.',
-    'projects.tcc.title': 'Fiscaliza',
-    'projects.tcc.desc':
-      'Final capstone project, in development through 2026. Mobile app in Flutter with builds for Android, iOS and Web.',
-    'projects.alurabooks.desc':
-      'Landing page for an online bookstore, built mobile-first. An exercise in media queries and layout with Flexbox and Grid.',
-    'projects.habit.desc':
-      "Interface for tracking habits, made during Rocketseat's NLW event. It has a progress grid and utility-based styling.",
-    'projects.imersao.title': 'Front-end Immersion',
-    'projects.imersao.desc':
-      "Project from Alura's Front-end Immersion: a whole interface built from a Figma layout, with reusable CSS components.",
-    'projects.numero.title': 'Secret Number Game',
-    'projects.numero.desc':
-      'Browser guessing game. DOM manipulation, state control, draws that never repeat a number and speech synthesis for accessibility.',
 
     'contact.title': 'Contact',
     'contact.sub': "I'm open to Front-end Developer roles. Send me a message.",

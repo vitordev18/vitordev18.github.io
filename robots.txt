@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Editor de conteúdo: página de trabalho, não faz parte do portfólio.
+Disallow: /admin.html
+
 Sitemap: https://vitordev18.github.io/sitemap.xml

@@ -1,0 +1,460 @@
+/* ============================================================
+   admin.css — estilos exclusivos do editor de conteúdo
+
+   Herda os tokens de cor, tipografia e espaçamento do
+   style.css. Aqui só entra o que existe apenas no admin:
+   barra fixa, abas, lista de itens e o diálogo de edição.
+============================================================ */
+
+.admin {
+  padding-top: 0;
+}
+
+/* ---------- barra superior ---------- */
+.admin-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: var(--header-bg);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--sp-4) var(--container-pad);
+}
+
+.admin-bar__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-note);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.admin-bar__title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.admin-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: auto;
+}
+
+/* Estado do rascunho: some do fluxo quando não há nada a dizer. */
+.admin-state {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.admin-state[data-tone='dirty'] {
+  color: var(--text);
+}
+
+.admin-state[data-tone='error'] {
+  color: var(--danger);
+}
+
+.btn--sm {
+  padding: 0.45rem 0.85rem;
+  font-size: var(--fs-sm);
+}
+
+/* ---------- corpo ---------- */
+.admin-main {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: var(--sp-6) var(--container-pad) var(--sp-8);
+}
+
+.admin-warning {
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-6);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-left-color: var(--danger);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  max-width: 68ch;
+}
+
+.admin-warning strong {
+  color: var(--text);
+}
+
+.admin-warning code {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  color: var(--text);
+}
+
+/* ---------- abas ---------- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-5);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.tab:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.tab[aria-selected='true'] {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.tab__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-note);
+  opacity: 0.7;
+}
+
+/* ---------- painel e lista ---------- */
+.panel[hidden] {
+  display: none;
+}
+
+.panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.panel__hint {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+.items {
+  display: grid;
+  gap: var(--sp-2);
+  list-style: none;
+  counter-reset: item;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.item:hover {
+  border-color: var(--border-strong);
+}
+
+.item__order {
+  font-family: var(--font-mono);
+  font-size: var(--fs-note);
+  color: var(--text-muted);
+  min-width: 2ch;
+}
+
+.item__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.item__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.item__meta {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-note);
+  color: var(--text-muted);
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+
+.item__actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex: none;
+}
+
+.item__btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.item__btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.item__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.item__btn--danger:hover:not(:disabled) {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.items__empty {
+  padding: var(--sp-6);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ---------- diálogo de edição ---------- */
+.editor {
+  width: min(760px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 3rem);
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background-color: var(--bg-alt);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.editor::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+}
+
+.editor__form {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 3rem);
+}
+
+.editor__head,
+.editor__foot {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  background-color: var(--surface);
+  flex: none;
+}
+
+.editor__head {
+  border-bottom: 1px solid var(--border);
+}
+
+.editor__foot {
+  border-top: 1px solid var(--border);
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.editor__title {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.editor__body {
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-5);
+  overflow-y: auto;
+}
+
+.editor__buttons {
+  display: flex;
+  gap: var(--sp-2);
+  margin-left: auto;
+}
+
+.editor__error {
+  font-size: var(--fs-sm);
+  color: var(--danger);
+}
+
+/* ---------- campos ---------- */
+.field__hint {
+  font-size: var(--fs-note);
+  color: var(--text-muted);
+}
+
+/* Par português / inglês lado a lado */
+.field-pair {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+@media (min-width: 720px) {
+  .field-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field__lang {
+  font-family: var(--font-mono);
+  font-size: var(--fs-note);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.field__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.field__check {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent);
+}
+
+select.field__input {
+  cursor: pointer;
+}
+
+textarea.field__input {
+  min-height: 7rem;
+  line-height: 1.6;
+}
+
+/* ---------- importação do GitHub ---------- */
+.gh-import {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+}
+
+.gh-import__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.gh-import__row .field__input {
+  flex: 1 1 12rem;
+}
+
+.gh-import__status {
+  font-family: var(--font-mono);
+  font-size: var(--fs-note);
+  color: var(--text-muted);
+  min-height: 1.2em;
+}
+
+/* ---------- subitens repetíveis (certificados) ---------- */
+.repeat {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.repeat__item {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+}
+
+.repeat__grid {
+  display: grid;
+  gap: var(--sp-2);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .repeat__grid {
+    grid-template-columns: 1fr 6rem;
+  }
+}
+
+.repeat__foot {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.repeat__foot label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ---------- mensagem pós-download ---------- */
+.admin-done {
+  margin-top: var(--sp-5);
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.admin-done code {
+  font-family: var(--font-mono);
+  color: var(--text);
+}

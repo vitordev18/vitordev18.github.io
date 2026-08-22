@@ -1414,3 +1414,24 @@ button {
     transform: none;
   }
 }
+
+/* ------------------------------------------------------------
+   Conteúdo vindo do content.json
+   Aviso exibido quando o JSON não carrega e quando o visitante
+   está sem JavaScript — nos dois casos a seção aponta para o
+   GitHub em vez de ficar vazia e sem explicação.
+------------------------------------------------------------ */
+.content-error,
+.no-js-note {
+  padding: var(--sp-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.no-js-note a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
