@@ -17,6 +17,8 @@
    08. Início
 ============================================================ */
 
+import { normalize, validate, stats } from './content/model.js';
+
 (function () {
   'use strict';
 
@@ -270,11 +272,9 @@
       hint: 'Os certificados ficam agrupados por assunto. O total de cursos e de horas exibido no site é somado a partir daqui.',
       title: (item) => dig(item, 'name.pt') || item.id,
       meta: (item) => {
-        const items = item.items || [];
-        const done = items.filter((cert) => !cert.wip);
-        const hours = done.reduce((total, cert) => total + Number(cert.hours || 0), 0);
+        const { hours } = stats({ certificates: [item] });
 
-        return `${items.length} certificado(s)${hours ? ` · ${hours}h` : ''}`;
+        return `${(item.items || []).length} certificado(s)${hours ? ` · ${hours}h` : ''}`;
       },
       blank: () => ({ id: '', name: { pt: '', en: '' }, meta: { pt: '', en: '' }, items: [] }),
       fields: () => [
@@ -914,11 +914,11 @@
       .text()
       .then((text) => {
         const data = JSON.parse(text);
-        const missing = ORDER.filter((type) => !Array.isArray(data[type]));
+        const errors = validate(data);
 
-        if (missing.length) throw new Error(`faltam as listas: ${missing.join(', ')}`);
+        if (errors.length) throw new Error(errors.slice(0, 3).join('; '));
 
-        model = data;
+        model = normalize(data);
         dirty = true;
         storage.set(DRAFT_KEY, JSON.stringify(model));
         renderState();
@@ -971,12 +971,8 @@
   }
 
   function start(data, fromDraft) {
-    model = data;
+    model = normalize(data);
     dirty = Boolean(fromDraft);
-
-    ORDER.forEach((type) => {
-      if (!Array.isArray(model[type])) model[type] = [];
-    });
 
     renderState();
     renderTabs();

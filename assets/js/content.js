@@ -16,6 +16,8 @@
    inicializar filtros, contadores e animações.
 ============================================================ */
 
+import { normalize } from './content/model.js';
+
 window.PortfolioContent = (function () {
   'use strict';
 
@@ -291,11 +293,13 @@ window.PortfolioContent = (function () {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json();
     })
-    .then((data) => {
+    .then((raw) => {
+      const data = normalize(raw);
+
       renderProjects(data);
-      renderTimeline('experience-list', 'exp', data.experience || []);
-      renderTimeline('education-list', 'edu', data.education || []);
-      renderCertificates(data.certificates || []);
+      renderTimeline('experience-list', 'exp', data.experience);
+      renderTimeline('education-list', 'edu', data.education);
+      renderCertificates(data.certificates);
 
       return data;
     })
