@@ -7,7 +7,7 @@
    onChange(fn)    fn(lang) roda a cada setLang, na ordem de inscrição
 ============================================================ */
 
-import DICTIONARY from '../i18n.js';
+import DICTIONARY from './dictionary.js';
 
 export const DEFAULT_LANG = 'pt';
 

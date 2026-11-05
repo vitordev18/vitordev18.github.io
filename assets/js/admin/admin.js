@@ -17,7 +17,8 @@
    08. Início
 ============================================================ */
 
-import { normalize, validate, stats } from './content/model.js';
+import { normalize, validate, stats } from '../content/model.js';
+import { $, $$, storage, make, icon } from '../lib/dom.js';
 
 (function () {
   'use strict';
@@ -44,69 +45,6 @@ import { normalize, validate, stats } from './content/model.js';
   let editing = { type: null, index: -1 };
   /** Repositórios do GitHub, buscados sob demanda. */
   let repos = null;
-
-  const $ = (selector, scope = document) => scope.querySelector(selector);
-  const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
-
-  const storage = {
-    get(key) {
-      try {
-        return localStorage.getItem(key);
-      } catch (error) {
-        return null;
-      }
-    },
-    set(key, value) {
-      try {
-        localStorage.setItem(key, value);
-      } catch (error) {
-        /* modo privado ou cota cheia: seguir sem rascunho */
-      }
-    },
-    remove(key) {
-      try {
-        localStorage.removeItem(key);
-      } catch (error) {
-        /* idem */
-      }
-    },
-  };
-
-  /** Cria um elemento com classe, texto, atributos e filhos. */
-  function make(tag, options) {
-    const opts = options || {};
-    const node = document.createElement(tag);
-
-    if (opts.className) node.className = opts.className;
-    if (opts.text !== undefined) node.textContent = opts.text;
-
-    Object.keys(opts.attrs || {}).forEach((name) => {
-      const value = opts.attrs[name];
-      if (value !== null && value !== undefined && value !== false) {
-        node.setAttribute(name, value === true ? '' : String(value));
-      }
-    });
-
-    (opts.children || []).forEach((child) => child && node.appendChild(child));
-
-    return node;
-  }
-
-  /** Ícone traçado, no mesmo estilo do site. */
-  function icon(path) {
-    const NS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(NS, 'svg');
-
-    svg.setAttribute('class', 'icon');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('aria-hidden', 'true');
-
-    const shape = document.createElementNS(NS, 'path');
-    shape.setAttribute('d', path);
-    svg.appendChild(shape);
-
-    return svg;
-  }
 
   /** Lê 'title.pt' dentro de um objeto aninhado. */
   const dig = (obj, path) =>

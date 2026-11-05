@@ -1,5 +1,5 @@
 /* ============================================================
-   content.js — conteúdo editável do portfólio
+   content/render.js — conteúdo editável do portfólio
 
    Projetos, experiência, formação e certificados não ficam mais
    escritos no HTML: eles vêm de assets/data/content.json, que a
@@ -11,53 +11,23 @@
       do JSON e t() para os rótulos fixos do dicionário;
    3. remonta tudo quando o idioma muda (onChange do lang.js).
 
-   O main.js espera window.PortfolioContent.ready antes de
-   inicializar filtros, contadores e animações.
+   O site/main.js espera `ready` antes de inicializar filtros,
+   contadores e animações. `ready` resolve com o conteúdo
+   normalizado, ou null se o JSON não carregar.
 ============================================================ */
 
-import { normalize, stats } from './content/model.js';
-import { t, pick, onChange } from './lang/lang.js';
+import { normalize } from './model.js';
+import { t, pick, onChange } from '../lang/lang.js';
+import { make, icon } from '../lib/dom.js';
 
-window.PortfolioContent = (function () {
+export const { ready } = (function () {
   'use strict';
 
   const SOURCE = 'assets/data/content.json';
-  const SVG_NS = 'http://www.w3.org/2000/svg';
 
   const ICON_EXTERNAL = 'M7 17L17 7M9 7h8v8';
 
   /* ---------- utilidades ---------- */
-
-  /** Cria um elemento com classe, texto, atributos e filhos. */
-  function make(tag, options) {
-    const opts = options || {};
-    const node = document.createElement(tag);
-
-    if (opts.className) node.className = opts.className;
-    if (opts.text) node.textContent = opts.text;
-
-    Object.keys(opts.attrs || {}).forEach((name) => {
-      node.setAttribute(name, opts.attrs[name]);
-    });
-
-    (opts.children || []).forEach((child) => child && node.appendChild(child));
-
-    return node;
-  }
-
-  /** Ícone de seta usado nos links dos cards. */
-  function icon(path) {
-    const svg = document.createElementNS(SVG_NS, 'svg');
-    svg.setAttribute('class', 'icon');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('aria-hidden', 'true');
-
-    const shape = document.createElementNS(SVG_NS, 'path');
-    shape.setAttribute('d', path);
-    svg.appendChild(shape);
-
-    return svg;
-  }
 
   /** Link externo com rel de segurança sempre preenchido. */
   function externalLink(url, className) {
@@ -221,7 +191,7 @@ window.PortfolioContent = (function () {
       const target = document.getElementById(id);
       if (!target || target.children.length) return;
 
-      // data-i18n deixa o main.js retraduzir o aviso na troca de idioma.
+      // data-i18n deixa o site/main.js retraduzir o aviso na troca de idioma.
       const link = externalLink('https://github.com/vitordev18', 'link');
       const label = make('span', { text: t('content.error') });
       label.dataset.i18n = 'content.error';
@@ -242,8 +212,8 @@ window.PortfolioContent = (function () {
 
   let loaded = null;
 
-  // Inscrito antes do main.js (este módulo roda primeiro): na troca de
-  // idioma o DOM novo já existe quando o main.js reaplica filtro e reveal.
+  // Inscrito antes do site/main.js (este módulo roda primeiro): na troca de
+  // idioma o DOM novo já existe quando o site/main.js reaplica filtro e reveal.
   onChange(() => {
     if (loaded) render(loaded);
   });
@@ -270,5 +240,5 @@ window.PortfolioContent = (function () {
       return null;
     });
 
-  return { ready: ready, source: SOURCE, stats: stats };
+  return { ready: ready };
 })();

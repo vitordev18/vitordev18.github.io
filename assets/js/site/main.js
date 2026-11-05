@@ -1,29 +1,23 @@
-import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/lang.js';
+/* ============================================================
+   site/main.js — ponto de entrada do index.html
+
+   Liga idioma, tema, menu, reveal, filtros e contadores. O
+   conteúdo do JSON vem de content/render.js e o formulário de
+   site/contact.js.
+============================================================ */
+
+// render.js vem antes do lang.js de propósito: ele precisa se inscrever
+// em onChange antes deste arquivo (ver restoreDynamicContent).
+import { ready } from '../content/render.js';
+import { stats } from '../content/model.js';
+import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from '../lang/lang.js';
+import { $, $$, storage } from '../lib/dom.js';
+import { initContactForm } from './contact.js';
 
 (function () {
   'use strict';
 
-  const $ = (selector, scope = document) => scope.querySelector(selector);
-  const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
-
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const storage = {
-    get(key) {
-      try {
-        return localStorage.getItem(key);
-      } catch (error) {
-        return null;
-      }
-    },
-    set(key, value) {
-      try {
-        localStorage.setItem(key, value);
-      } catch (error) {
-        return;
-      }
-    },
-  };
 
   const LANG_KEY = 'lang';
   /* Números dos data-stat. Os do content.json vêm de stats(); stack e contato não estão no JSON. */
@@ -255,7 +249,7 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
 
   function initReveal() {
     // Marca o que já foi observado: a função roda duas vezes, uma no
-    // carregamento e outra quando o content.js monta os cards do JSON.
+    // carregamento e outra quando o render.js monta os cards do JSON.
     const items = $$('.reveal').filter((item) => !item.dataset.revealBound);
     if (!items.length) return;
 
@@ -312,7 +306,7 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
     window.addEventListener('scroll', schedule, { passive: true });
   }
 
-  /* Fica aqui, e não nos botões, porque o content.js remonta os botões na troca de idioma. */
+  /* Fica aqui, e não nos botões, porque o render.js remonta os botões na troca de idioma. */
   let activeFilter = 'all';
 
   /** Marca o botão do filtro ativo e esconde os cards de fora. `animate` só no clique. */
@@ -354,7 +348,7 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
     });
   }
 
-  /** Depois que o content.js remonta as seções num novo idioma: nada pisca e o filtro continua. */
+  /** Depois que o render.js remonta as seções num novo idioma: nada pisca e o filtro continua. */
   function restoreDynamicContent() {
     $$('.reveal').forEach((item) => {
       if (item.dataset.revealBound) return;
@@ -364,120 +358,6 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
     });
 
     applyFilter(false);
-  }
-
-  function initContactForm() {
-    const form = $('#contact-form');
-    const status = $('#form-status');
-    if (!form || !status) return;
-
-    const DESTINATARIO = 'vrferreiraz18@gmail.com';
-    const submitBtn = $('button[type="submit"]', form);
-
-    const rules = {
-      nome: (value) => (value.trim().length >= 2 ? '' : 'form.error.name'),
-      email: (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim()) ? '' : 'form.error.email',
-      mensagem: (value) =>
-        value.trim().length >= 10 ? '' : 'form.error.message',
-    };
-
-    const setMessage = (el, key) => {
-      if (key) {
-        el.dataset.i18n = key;
-        el.textContent = t(key);
-        return;
-      }
-
-      delete el.dataset.i18n;
-      el.textContent = '';
-    };
-
-    const setStatus = (key, kind) => {
-      setMessage(status, key);
-      status.className = kind ? `form__status ${kind}` : 'form__status';
-    };
-
-    const validateField = (field) => {
-      const rule = rules[field.name];
-      if (!rule) return true;
-
-      const key = rule(field.value);
-      const errorEl = $(`[data-error-for="${field.name}"]`, form);
-
-      if (errorEl) setMessage(errorEl, key);
-      field.setAttribute('aria-invalid', String(Boolean(key)));
-
-      return !key;
-    };
-
-    $$('.field__input', form).forEach((field) => {
-      field.addEventListener('blur', () => validateField(field));
-      field.addEventListener('input', () => {
-        if (field.getAttribute('aria-invalid') === 'true') validateField(field);
-      });
-    });
-
-    const mailtoUrl = (data) => {
-      const assunto = t('form.mail.subject').replace('{name}', data.get('nome'));
-      const corpo = `${data.get('mensagem')}\n\n—\n${data.get('nome')}\n${data.get('email')}`;
-
-      return `mailto:${DESTINATARIO}?subject=${encodeURIComponent(assunto)}` +
-        `&body=${encodeURIComponent(corpo)}`;
-    };
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const fields = $$('.field__input', form);
-      const isValid = fields.map(validateField).every(Boolean);
-
-      if (!isValid) {
-        setStatus('form.status.invalid', 'is-error');
-        fields.find((field) => field.getAttribute('aria-invalid') === 'true')?.focus();
-        return;
-      }
-
-      const data = new FormData(form);
-
-      if (data.get('botcheck')) {
-        setStatus('form.status.sent', 'is-ok');
-        form.reset();
-        return;
-      }
-
-      submitBtn.disabled = true;
-      setStatus('form.status.sending');
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: data.get('access_key'),
-            from_name: data.get('from_name'),
-            subject: t('form.mail.subject').replace('{name}', data.get('nome')),
-            replyto: data.get('email'),
-            botcheck: '',
-            nome: data.get('nome'),
-            email: data.get('email'),
-            mensagem: data.get('mensagem'),
-          }),
-        });
-
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || !result.success) throw new Error(result.message || response.status);
-
-        setStatus('form.status.sent', 'is-ok');
-        form.reset();
-      } catch (error) {
-        console.error('[contato] falha no envio:', error);
-        setStatus('form.status.failed', 'is-error');
-        window.location.href = mailtoUrl(data);
-      } finally {
-        submitBtn.disabled = false;
-      }
-    });
   }
 
   function initContrast() {
@@ -524,7 +404,7 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
     Inicialização em duas etapas.
 
     A primeira roda de imediato, para que tema, menu, idioma e formulário
-    funcionem sem depender de rede. A segunda espera o content.js montar
+    funcionem sem depender de rede. A segunda espera o render.js montar
     projetos, experiência, formação e certificados a partir do JSON — só aí
     faz sentido traduzir esses nós, contá-los e ligar os filtros.
   */
@@ -543,11 +423,9 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
   initYear();
 
   function initDynamicContent(data) {
-    const content = window.PortfolioContent;
-
     contentReady = true;
 
-    counts = Object.assign(content && content.stats ? content.stats(data) : {}, {
+    counts = Object.assign(stats(data), {
       stack: $$('#stack .tag__icon').length,
       contact: $$('.contact__aside .contact__item').length,
     });
@@ -558,12 +436,6 @@ import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/l
     initProjectFilters();
   }
 
-  const content = window.PortfolioContent;
-
   // O segundo argumento cobre a falha: mesmo sem o JSON, o resto liga.
-  if (content && content.ready) {
-    content.ready.then(initDynamicContent, initDynamicContent);
-  } else {
-    initDynamicContent();
-  }
+  ready.then(initDynamicContent, () => initDynamicContent(null));
 })();

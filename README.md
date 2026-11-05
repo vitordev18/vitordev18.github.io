@@ -68,9 +68,18 @@ vitordev18.github.io/
 ├── assets/
 │   ├── css/            styles — style.css (site) and admin.css (editor)
 │   ├── data/           content.json — projects, experience, education, certificates
-│   ├── js/             i18n.js, content.js, main.js, admin.js
+│   ├── js/             ES modules, no build step
+│   │   ├── lib/dom.js            DOM helpers ($, $$, make, icon, storage)
+│   │   ├── content/model.js      content.json format: normalize, validate, stats
+│   │   ├── content/render.js     renders projects, timeline and certificates
+│   │   ├── lang/lang.js          current language: t, pick, setLang, onChange
+│   │   ├── lang/dictionary.js    interface text in PT and EN
+│   │   ├── site/main.js          entry point of index.html
+│   │   ├── site/contact.js       contact form (Web3Forms + mailto fallback)
+│   │   └── admin/admin.js        content editor (admin.html)
 │   ├── img/            images
 │   └── cv/             downloadable résumé
+├── tests/              node --test, no dependencies
 ├── robots.txt          SEO — crawler directives
 └── sitemap.xml         SEO — sitemap
 ```
@@ -94,7 +103,16 @@ python3 -m http.server 8000
 
 Open `http://localhost:8000` in your browser. (You can also use the **Live Server** extension in VS Code.)
 
-> 💡 Opening `index.html` directly via `file://` prevents the content and the translations from loading; use a local server as shown above.
+> 💡 Opening `index.html` directly via `file://` does not work: browsers block ES modules and `fetch` there. Use a local server as shown above.
+
+Run the tests (Node 20+, no install needed):
+
+```bash
+node --test
+```
+
+They check that `assets/data/content.json` is valid and that the numbers shown on the site
+(projects, companies, courses, hours) are computed correctly.
 
 ---
 
@@ -102,7 +120,8 @@ Open `http://localhost:8000` in your browser. (You can also use the **Live Serve
 
 Projects, experience, education, and certificates are **not written into the HTML**. They
 live in `assets/data/content.json`, with a Portuguese and an English value for every text,
-and are rendered by `assets/js/content.js`.
+and are rendered by `assets/js/content/render.js`. Its format is defined once in
+`assets/js/content/model.js`, shared by the site, the editor, and the tests.
 
 To change them, open `admin.html` while the site is running locally:
 
@@ -119,7 +138,7 @@ Work in progress is kept in `localStorage`, so the tab can be closed and reopene
 > writes to the repository and holds no secrets. It is marked `noindex` and disallowed
 > in `robots.txt`.
 
-Interface text — section titles, labels, form messages — lives in `assets/js/i18n.js` and
+Interface text — section titles, labels, form messages — lives in `assets/js/lang/dictionary.js` and
 is edited directly, always in both languages.
 
 ---
