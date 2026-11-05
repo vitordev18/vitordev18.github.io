@@ -7,56 +7,34 @@
 
    Como conversa com o resto do site:
    1. lê o JSON;
-   2. registra cada texto pt/en no dicionário do i18n.js, usando
-      chaves geradas a partir do id do item;
-   3. monta o DOM já com os atributos data-i18n, para que a troca
-      de idioma continue funcionando exatamente como antes.
+   2. monta o DOM no idioma atual, com pick() para os pares {pt, en}
+      do JSON e t() para os rótulos fixos do dicionário;
+   3. remonta tudo quando o idioma muda (onChange do lang.js).
 
    O main.js espera window.PortfolioContent.ready antes de
    inicializar filtros, contadores e animações.
 ============================================================ */
 
 import { normalize, stats } from './content/model.js';
+import { t, pick, onChange } from './lang/lang.js';
 
 window.PortfolioContent = (function () {
   'use strict';
 
   const SOURCE = 'assets/data/content.json';
-  const LANGS = ['pt', 'en'];
   const SVG_NS = 'http://www.w3.org/2000/svg';
 
   const ICON_EXTERNAL = 'M7 17L17 7M9 7h8v8';
 
-  const I18N = (window.I18N = window.I18N || { pt: {}, en: {} });
-  LANGS.forEach((lang) => {
-    I18N[lang] = I18N[lang] || {};
-  });
-
   /* ---------- utilidades ---------- */
 
-  /** Grava um par {pt, en} no dicionário e devolve a chave criada. */
-  function register(key, value) {
-    const pair = value || {};
-
-    LANGS.forEach((lang) => {
-      I18N[lang][key] = pair[lang] || pair.pt || '';
-    });
-
-    return key;
-  }
-
-  /**
-   * Cria um elemento. Se `i18n` vier junto, o texto é escrito pelo
-   * dicionário depois — aqui entra só o valor em português, que serve
-   * de conteúdo inicial e de fallback caso a chave suma.
-   */
+  /** Cria um elemento com classe, texto, atributos e filhos. */
   function make(tag, options) {
     const opts = options || {};
     const node = document.createElement(tag);
 
     if (opts.className) node.className = opts.className;
     if (opts.text) node.textContent = opts.text;
-    if (opts.i18n) node.dataset.i18n = opts.i18n;
 
     Object.keys(opts.attrs || {}).forEach((name) => {
       node.setAttribute(name, opts.attrs[name]);
@@ -92,7 +70,6 @@ window.PortfolioContent = (function () {
   /* ---------- projetos ---------- */
 
   function projectCard(project) {
-    const id = project.id;
     const classes = ['project'];
 
     if (project.featured) classes.push('project--featured');
@@ -104,19 +81,12 @@ window.PortfolioContent = (function () {
       head.appendChild(
         make('span', {
           className: 'project__badge',
-          i18n: project.badge === 'wip' ? 'projects.wip' : 'projects.badge',
-          text: project.badge === 'wip' ? 'Em andamento' : 'Destaque',
+          text: t(project.badge === 'wip' ? 'projects.wip' : 'projects.badge'),
         })
       );
     }
 
-    head.appendChild(
-      make('h3', {
-        className: 'project__title',
-        i18n: register(`project.${id}.title`, project.title),
-        text: (project.title || {}).pt,
-      })
-    );
+    head.appendChild(make('h3', { className: 'project__title', text: pick(project.title) }));
 
     const tags = make('ul', { className: 'tags tags--sm' });
     (project.tags || []).forEach((tag) => {
@@ -128,9 +98,8 @@ window.PortfolioContent = (function () {
       // O primeiro link é o principal e leva a seta; os demais ficam discretos.
       const anchor = externalLink(link.url, index === 0 ? 'link' : 'link link--muted');
       const key = link.type === 'live' ? 'projects.link.live' : 'projects.link.code';
-      const label = link.type === 'live' ? 'Ver online' : 'Código';
 
-      anchor.appendChild(make('span', { i18n: key, text: label }));
+      anchor.appendChild(make('span', { text: t(key) }));
       if (index === 0) anchor.appendChild(icon(ICON_EXTERNAL));
 
       footer.appendChild(anchor);
@@ -141,11 +110,7 @@ window.PortfolioContent = (function () {
       attrs: { 'data-category': project.category || '' },
       children: [
         head,
-        make('p', {
-          className: 'project__desc',
-          i18n: register(`project.${id}.desc`, project.desc),
-          text: (project.desc || {}).pt,
-        }),
+        make('p', { className: 'project__desc', text: pick(project.desc) }),
         tags,
         footer,
       ],
@@ -167,20 +132,18 @@ window.PortfolioContent = (function () {
     const buttons = [
       make('button', {
         className: 'filter is-active',
-        i18n: 'projects.filter.all',
-        text: 'Todos',
+        text: t('projects.filter.all'),
         attrs: { type: 'button', role: 'tab', 'aria-selected': 'true', 'data-filter': 'all' },
       }),
     ];
 
-    (data.categories || [])
+    data.categories
       .filter((category) => used.has(category.id))
       .forEach((category) => {
         buttons.push(
           make('button', {
             className: 'filter',
-            i18n: register(`category.${category.id}`, category.label),
-            text: (category.label || {}).pt,
+            text: pick(category.label),
             attrs: {
               type: 'button',
               role: 'tab',
@@ -196,13 +159,8 @@ window.PortfolioContent = (function () {
 
   /* ---------- experiência e formação ---------- */
 
-  function timelineItem(prefix, item) {
-    const field = (name, tag, className) =>
-      make(tag, {
-        className: className,
-        i18n: register(`${prefix}.${item.id}.${name}`, item[name]),
-        text: (item[name] || {}).pt,
-      });
+  function timelineItem(item) {
+    const field = (name, tag, className) => make(tag, { className: className, text: pick(item[name]) });
 
     return make('li', {
       className: 'timeline__item reveal',
@@ -215,11 +173,11 @@ window.PortfolioContent = (function () {
     });
   }
 
-  function renderTimeline(elementId, prefix, items) {
+  function renderTimeline(elementId, items) {
     const list = document.getElementById(elementId);
     if (!list) return;
 
-    list.replaceChildren(...items.map((item) => timelineItem(prefix, item)));
+    list.replaceChildren(...items.map(timelineItem));
   }
 
   /* ---------- certificados ---------- */
@@ -228,16 +186,8 @@ window.PortfolioContent = (function () {
     const head = make('p', {
       className: 'cert-group__head',
       children: [
-        make('span', {
-          className: 'cert-group__name',
-          i18n: register(`cert.${group.id}.name`, group.name),
-          text: (group.name || {}).pt,
-        }),
-        make('span', {
-          className: 'cert-group__meta',
-          i18n: register(`cert.${group.id}.meta`, group.meta),
-          text: (group.meta || {}).pt,
-        }),
+        make('span', { className: 'cert-group__name', text: pick(group.name) }),
+        make('span', { className: 'cert-group__meta', text: pick(group.meta) }),
       ],
     });
 
@@ -267,23 +217,36 @@ window.PortfolioContent = (function () {
    * para o GitHub em vez de ficar vazia e sem explicação.
    */
   function renderFallback() {
-    register('content.error', {
-      pt: 'Não consegui carregar esta seção agora. O conteúdo está no meu GitHub.',
-      en: 'I could not load this section right now. The content is on my GitHub.',
-    });
-
     ['projects', 'experience-list', 'education-list', 'cert-groups'].forEach((id) => {
       const target = document.getElementById(id);
       if (!target || target.children.length) return;
 
+      // data-i18n deixa o main.js retraduzir o aviso na troca de idioma.
       const link = externalLink('https://github.com/vitordev18', 'link');
-      link.appendChild(make('span', { i18n: 'content.error', text: I18N.pt['content.error'] }));
+      const label = make('span', { text: t('content.error') });
+      label.dataset.i18n = 'content.error';
+      link.appendChild(label);
 
       target.replaceChildren(make('p', { className: 'content-error', children: [link] }));
     });
   }
 
+  function render(data) {
+    renderProjects(data);
+    renderTimeline('experience-list', data.experience);
+    renderTimeline('education-list', data.education);
+    renderCertificates(data.certificates);
+  }
+
   /* ---------- carregamento ---------- */
+
+  let loaded = null;
+
+  // Inscrito antes do main.js (este módulo roda primeiro): na troca de
+  // idioma o DOM novo já existe quando o main.js reaplica filtro e reveal.
+  onChange(() => {
+    if (loaded) render(loaded);
+  });
 
   const ready = fetch(SOURCE, { cache: 'no-cache' })
     .then((response) => {
@@ -293,10 +256,8 @@ window.PortfolioContent = (function () {
     .then((raw) => {
       const data = normalize(raw);
 
-      renderProjects(data);
-      renderTimeline('experience-list', 'exp', data.experience);
-      renderTimeline('education-list', 'edu', data.education);
-      renderCertificates(data.certificates);
+      loaded = data;
+      render(data);
 
       return data;
     })

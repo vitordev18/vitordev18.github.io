@@ -1,3 +1,5 @@
+import { t, setLang as changeLang, onChange, getLang, LANGUAGES } from './lang/lang.js';
+
 (function () {
   'use strict';
 
@@ -24,55 +26,9 @@
   };
 
   const LANG_KEY = 'lang';
-  const DEFAULT_LANG = 'pt';
-
-  const LANGUAGES = {
-    pt: { htmlLang: 'pt-BR', short: 'PT', native: 'Português' },
-    en: { htmlLang: 'en', short: 'EN', native: 'English' },
-  };
-
-  const I18N = window.I18N || { pt: {}, en: {} };
-
-  /*
-    Valores que envelhecem sozinhos. Ficam como {age} e {years} dentro das
-    strings do i18n.js e são calculados a cada carregamento da página, para
-    não precisarem ser corrigidos à mão todo aniversário.
-  */
-  const BIRTH_DATE = '2004-11-18';
-  const STUDY_START = '2023-01-04';
-
-  /** Anos completos entre uma data ISO e hoje. */
-  function yearsSince(iso) {
-    const [year, month, day] = iso.split('-').map(Number);
-    const today = new Date();
-    const monthsPassed = today.getMonth() + 1 - month;
-    let years = today.getFullYear() - year;
-
-    // Ainda não chegou a data neste ano? Então falta completar mais um.
-    if (monthsPassed < 0 || (monthsPassed === 0 && today.getDate() < day)) years -= 1;
-
-    return Math.max(years, 0);
-  }
-
-  const TOKENS = {
-    '{age}': String(yearsSince(BIRTH_DATE)),
-    '{years}': String(yearsSince(STUDY_START)),
-  };
-
-  const fillTokens = (text) =>
-    Object.keys(TOKENS).reduce((acc, token) => acc.split(token).join(TOKENS[token]), text);
-
-  let currentLang = DEFAULT_LANG;
-
   /* Números dos data-stat. Os do content.json vêm de stats(); stack e contato não estão no JSON. */
   let counts = {};
-
-  const t = (key) => {
-    const dict = I18N[currentLang] || I18N[DEFAULT_LANG];
-    const value = dict[key] !== undefined ? dict[key] : I18N[DEFAULT_LANG][key];
-
-    return fillTokens(value !== undefined ? value : key);
-  };
+  let contentReady = false;
 
   const resolveLang = () => {
     const saved = storage.get(LANG_KEY);
@@ -103,13 +59,11 @@
       });
     });
 
-    document.documentElement.lang = LANGUAGES[currentLang].htmlLang;
+    document.documentElement.lang = LANGUAGES[getLang()].htmlLang;
   }
 
   function initI18n() {
-    if (!Object.keys(I18N[DEFAULT_LANG]).length) return;
-
-    currentLang = resolveLang();
+    const initial = resolveLang();
 
     const root = $('#lang');
     const toggle = $('#lang-toggle');
@@ -126,15 +80,15 @@
 
       if (!open) return;
 
-      const checked = options.find((option) => option.dataset.lang === currentLang);
+      const checked = options.find((option) => option.dataset.lang === getLang());
       (checked || options[0]).focus();
     };
 
     const setLang = (lang, userChoice) => {
       if (!LANGUAGES[lang]) return;
 
-      currentLang = lang;
-      applyTranslations();
+      // Os inscritos em onChange remontam o conteúdo e retraduzem a página.
+      changeLang(lang);
 
       options.forEach((option) => {
         option.setAttribute('aria-checked', String(option.dataset.lang === lang));
@@ -149,7 +103,7 @@
       if (liveStatus) liveStatus.textContent = t('lang.changed');
     };
 
-    setLang(currentLang, false);
+    setLang(initial, false);
 
     if (!root || !toggle || !menu) return;
 
@@ -358,43 +312,58 @@
     window.addEventListener('scroll', schedule, { passive: true });
   }
 
+  /* Fica aqui, e não nos botões, porque o content.js remonta os botões na troca de idioma. */
+  let activeFilter = 'all';
+
+  /** Marca o botão do filtro ativo e esconde os cards de fora. `animate` só no clique. */
+  function applyFilter(animate) {
+    $$('#filters .filter').forEach((button) => {
+      const isCurrent = button.dataset.filter === activeFilter;
+      button.classList.toggle('is-active', isCurrent);
+      button.setAttribute('aria-selected', String(isCurrent));
+    });
+
+    $$('#projects .project').forEach((project) => {
+      const matches = activeFilter === 'all' || project.dataset.category === activeFilter;
+      project.classList.toggle('is-hidden', !matches);
+
+      if (!matches || !animate) return;
+
+      project.classList.add('is-visible');
+
+      if (prefersReducedMotion) return;
+
+      project.classList.remove('is-entering');
+      void project.offsetWidth;
+      project.classList.add('is-entering');
+    });
+  }
+
   function initProjectFilters() {
     const filterBar = $('#filters');
-    const projects = $$('#projects .project');
-    if (!filterBar || !projects.length) return;
+    if (!filterBar || !$$('#projects .project').length) return;
 
     filterBar.hidden = false;
 
-    const buttons = $$('.filter', filterBar);
+    filterBar.addEventListener('click', (event) => {
+      const button = event.target.closest('.filter');
+      if (!button) return;
 
-    const applyFilter = (category) => {
-      projects.forEach((project) => {
-        const matches = category === 'all' || project.dataset.category === category;
-        project.classList.toggle('is-hidden', !matches);
-
-        if (!matches) return;
-
-        project.classList.add('is-visible');
-
-        if (prefersReducedMotion) return;
-
-        project.classList.remove('is-entering');
-        void project.offsetWidth;
-        project.classList.add('is-entering');
-      });
-    };
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        buttons.forEach((other) => {
-          const isCurrent = other === button;
-          other.classList.toggle('is-active', isCurrent);
-          other.setAttribute('aria-selected', String(isCurrent));
-        });
-
-        applyFilter(button.dataset.filter);
-      });
+      activeFilter = button.dataset.filter;
+      applyFilter(true);
     });
+  }
+
+  /** Depois que o content.js remonta as seções num novo idioma: nada pisca e o filtro continua. */
+  function restoreDynamicContent() {
+    $$('.reveal').forEach((item) => {
+      if (item.dataset.revealBound) return;
+
+      item.dataset.revealBound = '1';
+      item.classList.add('is-visible');
+    });
+
+    applyFilter(false);
   }
 
   function initContactForm() {
@@ -560,6 +529,11 @@
     faz sentido traduzir esses nós, contá-los e ligar os filtros.
   */
   initReveal();
+  onChange(() => {
+    applyTranslations();
+    // Antes do JSON chegar não há o que restaurar; o initDynamicContent cuida da primeira vez.
+    if (contentReady) restoreDynamicContent();
+  });
   initI18n();
   initTheme();
   initMobileMenu();
@@ -570,6 +544,8 @@
 
   function initDynamicContent(data) {
     const content = window.PortfolioContent;
+
+    contentReady = true;
 
     counts = Object.assign(content && content.stats ? content.stats(data) : {}, {
       stack: $$('#stack .tag__icon').length,

@@ -1,4 +1,4 @@
-window.I18N = {
+export default {
   pt: {
     'meta.title': 'Vitor Rodrigues Ferreira',
     'meta.description':
@@ -110,6 +110,7 @@ window.I18N = {
     'form.note':
       'O Web3Forms processa o envio e a mensagem chega no meu e-mail. Este site não guarda nada.',
     'footer.top': 'Voltar ao topo',
+    'content.error': 'Não consegui carregar esta seção agora. O conteúdo está no meu GitHub.',
   },
 
   en: {
@@ -223,5 +224,6 @@ window.I18N = {
     'form.note':
       'Web3Forms handles the submission and the message lands in my inbox. This site stores nothing.',
     'footer.top': 'Back to top',
+    'content.error': 'I could not load this section right now. The content is on my GitHub.',
   },
 };
