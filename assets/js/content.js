@@ -16,7 +16,7 @@
    inicializar filtros, contadores e animações.
 ============================================================ */
 
-import { normalize } from './content/model.js';
+import { normalize, stats } from './content/model.js';
 
 window.PortfolioContent = (function () {
   'use strict';
@@ -247,9 +247,6 @@ window.PortfolioContent = (function () {
       const anchor = externalLink(cert.url, cert.wip ? 'cert cert--wip' : 'cert');
       anchor.textContent = cert.title;
 
-      // data-hours alimenta o total de horas exibido no resumo.
-      if (!cert.wip && cert.hours) anchor.dataset.hours = String(cert.hours);
-
       list.appendChild(make('li', { children: [anchor] }));
     });
 
@@ -312,5 +309,5 @@ window.PortfolioContent = (function () {
       return null;
     });
 
-  return { ready: ready, source: SOURCE };
+  return { ready: ready, source: SOURCE, stats: stats };
 })();

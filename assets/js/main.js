@@ -64,6 +64,9 @@
 
   let currentLang = DEFAULT_LANG;
 
+  /* Números dos data-stat. Os do content.json vêm de stats(); stack e contato não estão no JSON. */
+  let counts = {};
+
   const t = (key) => {
     const dict = I18N[currentLang] || I18N[DEFAULT_LANG];
     const value = dict[key] !== undefined ? dict[key] : I18N[DEFAULT_LANG][key];
@@ -83,13 +86,10 @@
       el.textContent = t(el.dataset.i18n);
     });
 
-    $$('[data-i18n-count]').forEach((el) => {
-      const alvo = $$(el.dataset.i18nCount);
-      const horas = alvo.reduce((total, item) => total + Number(item.dataset.hours || 0), 0);
-
+    $$('[data-stat]').forEach((el) => {
       el.textContent = t(el.dataset.i18n)
-        .replace('{n}', String(alvo.length))
-        .replace('{h}', String(horas));
+        .replace('{n}', String(counts[el.dataset.stat] || 0))
+        .replace('{h}', String(counts.hours || 0));
     });
 
     $$('[data-i18n-html]').forEach((el) => {
@@ -568,7 +568,14 @@
   initContrast();
   initYear();
 
-  function initDynamicContent() {
+  function initDynamicContent(data) {
+    const content = window.PortfolioContent;
+
+    counts = Object.assign(content && content.stats ? content.stats(data) : {}, {
+      stack: $$('#stack .tag__icon').length,
+      contact: $$('.contact__aside .contact__item').length,
+    });
+
     applyTranslations();
     initReveal();
     initScrollSpy();
