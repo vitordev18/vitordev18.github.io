@@ -179,6 +179,11 @@ import { initContactForm } from './contact.js';
       toggle.dataset.i18nAttr = `aria-label:${labelKey}`;
       toggle.setAttribute('aria-label', t(labelKey));
       document.body.style.overflow = open ? 'hidden' : '';
+
+      // O sheet cobre a tela: o teclado e o leitor de tela não devem alcançar o que está atrás.
+      $$('#conteudo, .site-footer').forEach((el) => {
+        el.inert = open;
+      });
     };
 
     toggle.addEventListener('click', () => {
