@@ -18,17 +18,17 @@
   --sp-6: 2rem;
   --sp-7: 3rem;
   --sp-8: 4rem;
-  --sp-section: clamp(4.5rem, 10vw, 7.5rem);
+  --sp-section: clamp(4rem, 10vw, 6rem);
 
-  --container: 1120px;
-  --container-pad: clamp(1.25rem, 5vw, 2rem);
+  --container: 72rem;
+  --container-pad: clamp(1rem, 4vw, 2rem);
   --rail: clamp(120px, 13vw, 190px);
 
   --radius-sm: 4px;
   --radius: 8px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur: 0.32s;
+  --dur: 0.24s;
 
   --header-h: 68px;
 }
@@ -43,12 +43,17 @@
   --border-strong: #323735;
   --text: #f4f7f5;
   --text-muted: #a7a2a9;
-  --accent: #f4f7f5;
-  --accent-hover: #d7dcd8;
-  --accent-contrast: #08090a;
+  --primary: #f4f7f5;
+  --primary-hover: #d7dcd8;
+  --primary-contrast: #08090a;
+  --accent: #c6f432;
+  --accent-ink: #08090a;
+  --accent-soft: rgba(198, 244, 50, 0.14);
+  --overlay: rgba(0, 0, 0, 0.6);
   --danger: #d98d86;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 16px 40px -20px rgba(0, 0, 0, 0.8);
   --header-bg: rgba(8, 9, 10, 0.76);
+  --placeholder: #8a868e;
   color-scheme: dark;
 }
 
@@ -61,12 +66,17 @@
   --border-strong: #a7a2a9;
   --text: #08090a;
   --text-muted: #575a5e;
-  --accent: #08090a;
-  --accent-hover: #222823;
-  --accent-contrast: #f4f7f5;
+  --primary: #08090a;
+  --primary-hover: #222823;
+  --primary-contrast: #f4f7f5;
+  --accent: #4d7c0f;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(77, 124, 15, 0.12);
+  --overlay: rgba(8, 9, 10, 0.45);
   --danger: #9a3b33;
   --shadow: 0 1px 2px rgba(8, 9, 10, 0.05), 0 16px 36px -22px rgba(8, 9, 10, 0.25);
   --header-bg: rgba(244, 247, 245, 0.8);
+  --placeholder: #66696d;
   color-scheme: light;
 }
 
@@ -170,8 +180,8 @@ button {
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-contrast);
+  background: var(--primary);
+  color: var(--primary-contrast);
 }
 
 .skip-link {
@@ -181,8 +191,8 @@ button {
   z-index: 200;
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
-  background-color: var(--accent);
-  color: var(--accent-contrast);
+  background-color: var(--primary);
+  color: var(--primary-contrast);
   font-family: var(--font-display);
   font-size: var(--fs-sm);
   font-weight: 600;
@@ -295,12 +305,12 @@ button {
 }
 
 .btn--primary {
-  background-color: var(--accent);
-  color: var(--accent-contrast);
+  background-color: var(--primary);
+  color: var(--primary-contrast);
 }
 
 .btn--primary:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--primary-hover);
 }
 
 .btn--ghost {
@@ -309,7 +319,7 @@ button {
 }
 
 .btn--ghost:hover {
-  border-color: var(--accent);
+  border-color: var(--primary);
   background-color: var(--surface);
 }
 
@@ -435,12 +445,12 @@ button {
 }
 
 .field__input::placeholder {
-  color: color-mix(in srgb, var(--text-muted) 62%, transparent);
+  color: var(--placeholder);
 }
 
 .field__input:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--primary);
   background-color: var(--surface-2);
 }
 
@@ -519,8 +529,8 @@ button {
   width: 30px;
   height: 30px;
   border-radius: var(--radius-sm);
-  background-color: var(--accent);
-  color: var(--accent-contrast);
+  background-color: var(--primary);
+  color: var(--primary-contrast);
   font-family: var(--font-mono);
   font-size: var(--fs-note);
   font-weight: 500;
@@ -552,7 +562,7 @@ button {
   bottom: -6px;
   width: 100%;
   height: 1px;
-  background-color: var(--accent);
+  background-color: var(--primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur) var(--ease);
@@ -674,7 +684,7 @@ button {
 }
 
 .lang__option[aria-checked='true'] .lang__badge {
-  border-color: var(--accent);
+  border-color: var(--primary);
   color: var(--text);
 }
 
@@ -744,7 +754,7 @@ button {
   content: '';
   width: 6px;
   height: 6px;
-  background-color: var(--accent);
+  background-color: var(--primary);
 }
 
 .hero__title {
@@ -1073,9 +1083,9 @@ button {
 }
 
 .filter.is-active {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-contrast);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-contrast);
 }
 
 .projects {
@@ -1105,7 +1115,7 @@ button {
 }
 
 .project.is-entering {
-  animation: card-in 0.45s var(--ease) both;
+  animation: card-in var(--dur) var(--ease) both;
 }
 
 @keyframes card-in {

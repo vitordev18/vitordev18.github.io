@@ -135,9 +135,9 @@
 }
 
 .tab[aria-selected='true'] {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-contrast);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-contrast);
 }
 
 .tab__count {
@@ -272,7 +272,7 @@
 }
 
 .editor::backdrop {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--overlay);
   backdrop-filter: blur(3px);
 }
 
