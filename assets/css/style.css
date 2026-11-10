@@ -1042,6 +1042,84 @@ button {
   max-width: 62ch;
 }
 
+/* Experiência como git log: trilho vertical com um nó por commit. */
+.log {
+  margin-left: 6px;
+  border-left: 1px solid var(--border-strong);
+}
+
+.commit {
+  position: relative;
+  display: grid;
+  gap: var(--sp-2);
+  padding: 0 0 var(--sp-6) var(--sp-5);
+}
+
+.commit:last-child {
+  padding-bottom: 0;
+}
+
+.commit::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 5px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  background-color: var(--bg);
+}
+
+/* O commit atual (HEAD) é o único nó no acento. */
+.commit:first-child::before {
+  border-color: var(--accent);
+  background-color: var(--accent);
+}
+
+.commit__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.commit__hash {
+  color: var(--text);
+}
+
+.commit__head {
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.commit__msg {
+  font-size: clamp(1.125rem, 2.4vw, 1.375rem);
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -0.015em;
+}
+
+.commit__author {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.commit__label {
+  color: var(--text);
+}
+
+.commit__desc {
+  max-width: 62ch;
+  color: var(--text-muted);
+}
+
 .certs {
   margin-top: var(--sp-6);
 }

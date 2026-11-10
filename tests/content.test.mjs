@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { normalize, validate, stats } from '../assets/js/content/model.js';
+import { normalize, validate, stats, shortHash } from '../assets/js/content/model.js';
 
 const real = JSON.parse(readFileSync(new URL('../assets/data/content.json', import.meta.url), 'utf8'));
 
@@ -59,4 +59,12 @@ test('validate aponta listas faltando, id repetido e categoria desconhecida', ()
 test('validate recusa o que não é objeto', () => {
   assert.equal(validate(null).length, 1);
   assert.equal(validate([]).length, 1);
+});
+
+test('shortHash é estável, tem 7 hex e diferencia os ids reais', () => {
+  assert.equal(shortHash('moni'), shortHash('moni'));
+  assert.match(shortHash('moni'), /^[0-9a-f]{7}$/);
+
+  const hashes = real.experience.map((item) => shortHash(item.id));
+  assert.equal(new Set(hashes).size, hashes.length);
 });

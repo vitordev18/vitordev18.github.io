@@ -105,6 +105,18 @@ export function validate(raw) {
   return errors;
 }
 
+/** Hash curto estilo git (7 hex) derivado do id: estável entre recargas e idiomas. FNV-1a 32 bits. */
+export function shortHash(id) {
+  let hash = 0x811c9dc5;
+
+  for (const char of String(id)) {
+    hash ^= char.codePointAt(0);
+    hash = Math.imul(hash, 0x01000193);
+  }
+
+  return (hash >>> 0).toString(16).padStart(8, '0').slice(0, 7);
+}
+
 /** Números exibidos no site. Certificados em andamento (wip) não contam. */
 export function stats(content) {
   const data = normalize(content);

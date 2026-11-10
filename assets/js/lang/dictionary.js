@@ -77,6 +77,7 @@ export default {
     'meta.education': '{n} formações',
     'experience.title': 'Experiência',
     'experience.sub': 'Onde trabalhei e o que fiz em cada lugar.',
+    'experience.author': 'Autor',
     'education.title': 'Formação',
     'education.sub': 'Onde estudei e o que estou estudando agora.',
 
@@ -194,6 +195,7 @@ export default {
     'meta.education': '{n} programs',
     'experience.title': 'Experience',
     'experience.sub': 'Where I have worked and what I did in each place.',
+    'experience.author': 'Author',
     'education.title': 'Education',
     'education.sub': 'Where I studied and what I am studying now.',
 

@@ -16,7 +16,7 @@
    normalizado, ou null se o JSON não carregar.
 ============================================================ */
 
-import { normalize } from './model.js';
+import { normalize, shortHash } from './model.js';
 import { t, pick, onChange } from '../lang/lang.js';
 import { make, icon } from '../lib/dom.js';
 
@@ -150,6 +150,42 @@ export const { ready } = (function () {
     list.replaceChildren(...items.map(timelineItem));
   }
 
+  /** Experiência como `git log`: hash do id, período como data, cargo como mensagem, empresa como autor. */
+  function commitItem(item, index) {
+    const meta = make('p', {
+      className: 'commit__meta',
+      children: [
+        make('span', { className: 'commit__hash', text: shortHash(item.id) }),
+        // O primeiro item é o trabalho atual: o HEAD do log.
+        index === 0 ? make('span', { className: 'commit__head', text: 'HEAD' }) : null,
+        make('span', { className: 'commit__date', text: pick(item.period) }),
+      ],
+    });
+
+    return make('li', {
+      className: 'commit reveal',
+      children: [
+        meta,
+        make('h3', { className: 'commit__msg', text: pick(item.role) }),
+        make('p', {
+          className: 'commit__author',
+          children: [
+            make('span', { className: 'commit__label', text: `${t('experience.author')}:` }),
+            make('span', { text: ` ${pick(item.org)}` }),
+          ],
+        }),
+        make('p', { className: 'commit__desc', text: pick(item.desc) }),
+      ],
+    });
+  }
+
+  function renderLog(elementId, items) {
+    const list = document.getElementById(elementId);
+    if (!list) return;
+
+    list.replaceChildren(...items.map(commitItem));
+  }
+
   /* ---------- certificados ---------- */
 
   function certGroup(group) {
@@ -203,7 +239,7 @@ export const { ready } = (function () {
 
   function render(data) {
     renderProjects(data);
-    renderTimeline('experience-list', data.experience);
+    renderLog('experience-list', data.experience);
     renderTimeline('education-list', data.education);
     renderCertificates(data.certificates);
   }
