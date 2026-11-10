@@ -177,11 +177,16 @@
   <main id="conteudo">
     <section class="hero section" id="inicio">
       <div class="container hero__inner">
+        <div class="hero__head">
+          <p class="hero__status">
+            <span class="hero__dot" aria-hidden="true"></span>
+            <span data-i18n="hero.available">Disponível para novas oportunidades</span>
+          </p>
+
+          <h1 class="hero__title">Vitor Rodrigues <span class="hero__title-last">Ferreira</span></h1>
+        </div>
+
         <div class="hero__content">
-
-          <p class="hero__status" data-i18n="hero.available">Disponível para novas oportunidades</p>
-
-          <h1 class="hero__title">Vitor Rodrigues Ferreira</h1>
           <p class="hero__role" data-i18n="role">Desenvolvedor Front-end</p>
 
           <p class="hero__lead" data-i18n-html="hero.lead">
@@ -229,7 +234,13 @@
           </ul>
         </div>
 
-        <aside class="hero__spec" data-i18n-attr="aria-label:a11y.spec" aria-label="Ficha técnica">
+        <aside class="hero__spec term" data-i18n-attr="aria-label:a11y.spec" aria-label="Ficha técnica">
+          <div class="term__bar" aria-hidden="true">
+            <i></i><i></i><i></i>
+            <span>~/vitor — whoami</span>
+          </div>
+
+          <div class="term__body">
           <img class="hero__portrait" src="assets/img/profile.jpeg" width="336" height="336"
             decoding="async" data-i18n-attr="alt:hero.portrait" alt="Vitor Rodrigues Ferreira">
 
@@ -251,6 +262,7 @@
               <dd class="spec__value"><span id="spec-ratio">18.5:1</span> <em id="spec-level">· AAA</em></dd>
             </div>
           </dl>
+          </div>
         </aside>
       </div>
     </section>
