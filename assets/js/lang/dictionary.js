@@ -94,7 +94,8 @@ export default {
     'projects.more': 'Ver todos os repositórios no GitHub',
 
     'contact.title': 'Contato',
-    'contact.sub': 'Estou aberto a oportunidades como Desenvolvedor Front-end. Vamos conversar?',
+    'contact.sub': 'Estou aberto a oportunidades como Desenvolvedor Front-end.',
+    'contact.call': 'Vamos <span>conversar?</span>',
     'contact.email': 'E-mail',
     'form.name': 'Nome',
     'form.name.placeholder': 'Seu nome',
@@ -212,7 +213,8 @@ export default {
     'projects.more': 'See all repositories on GitHub',
 
     'contact.title': 'Contact',
-    'contact.sub': "I'm open to Front-end Developer roles. Send me a message.",
+    'contact.sub': "I'm open to Front-end Developer roles.",
+    'contact.call': "Let's <span>talk.</span>",
     'contact.email': 'Email',
     'form.name': 'Name',
     'form.name.placeholder': 'Your name',

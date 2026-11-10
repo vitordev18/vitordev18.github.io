@@ -427,18 +427,16 @@ button {
 
 .field__label {
   font-family: var(--font-mono);
-  font-size: var(--fs-note);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: var(--fs-xs);
   color: var(--text-muted);
 }
 
 .field__input {
   width: 100%;
-  padding: 0.75rem 0.9rem;
+  padding: 0.75rem 0.875rem;
   background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
   font-size: var(--fs-body);
   resize: vertical;
   transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
@@ -448,10 +446,11 @@ button {
   color: var(--placeholder);
 }
 
+/* O outline some só porque a borda e o halo no acento fazem o papel do foco visível. */
 .field__input:focus {
   outline: none;
-  border-color: var(--primary);
-  background-color: var(--surface-2);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .field__input[aria-invalid='true'] {
@@ -1097,7 +1096,7 @@ button {
 }
 
 .commit__head {
-  padding: 0.125rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: var(--radius-sm);
   background-color: var(--accent-soft);
   color: var(--accent);
@@ -1299,7 +1298,7 @@ button {
 }
 
 .project__wip {
-  padding-inline: var(--sp-2);
+  padding: 0.25rem var(--sp-2);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
 }
@@ -1355,7 +1354,7 @@ button {
 
 .project__badge {
   justify-self: start;
-  padding: 0.125rem 0.625rem;
+  padding: 0.25rem 0.625rem;
   border-radius: var(--radius-sm);
   background-color: var(--accent);
   color: var(--accent-ink);
@@ -1420,6 +1419,25 @@ button {
 .contact__aside {
   display: grid;
   align-content: start;
+}
+
+.contact__call {
+  margin-bottom: var(--sp-6);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  font-stretch: 118%;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.contact__call span {
+  color: var(--text-muted);
+}
+
+.contact__call + .contact__item {
   border-top: 1px solid var(--border);
 }
 
@@ -1458,10 +1476,8 @@ button {
 
 .contact__item strong {
   font-family: var(--font-mono);
-  font-size: var(--fs-note);
+  font-size: var(--fs-xs);
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--text);
 }
 
@@ -1475,11 +1491,24 @@ button {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sp-3);
+  gap: var(--sp-3) var(--sp-5);
   font-family: var(--font-mono);
-  font-size: var(--fs-note);
-  letter-spacing: 0.06em;
+  font-size: var(--fs-xs);
   color: var(--text-muted);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+}
+
+.footer__links a {
+  transition: color var(--dur) var(--ease);
+}
+
+.footer__links a:hover {
+  color: var(--text);
 }
 
 .footer__top {
