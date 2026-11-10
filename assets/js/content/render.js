@@ -188,8 +188,8 @@ export const { ready } = (function () {
 
   /* ---------- certificados ---------- */
 
-  function certGroup(group) {
-    const head = make('p', {
+  function certGroup(group, open) {
+    const head = make('summary', {
       className: 'cert-group__head',
       children: [
         make('span', { className: 'cert-group__name', text: pick(group.name) }),
@@ -206,14 +206,25 @@ export const { ready } = (function () {
       list.appendChild(make('li', { children: [anchor] }));
     });
 
-    return make('li', { className: 'cert-group', children: [head, list] });
+    const details = make('details', {
+      className: 'cert-group__details',
+      attrs: { 'data-id': group.id, open: open },
+      children: [head, list],
+    });
+
+    return make('li', { className: 'cert-group', children: [details] });
   }
 
   function renderCertificates(groups) {
     const list = document.getElementById('cert-groups');
     if (!list) return;
 
-    list.replaceChildren(...groups.map(certGroup));
+    // A troca de idioma remonta a lista: quem estava aberto continua aberto.
+    const open = new Set(
+      Array.from(list.querySelectorAll('details[open]'), (details) => details.dataset.id)
+    );
+
+    list.replaceChildren(...groups.map((group) => certGroup(group, open.has(group.id))));
   }
 
   /* ---------- falha de carregamento ---------- */

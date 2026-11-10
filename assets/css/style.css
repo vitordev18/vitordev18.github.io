@@ -1003,32 +1003,37 @@ button {
   margin-bottom: var(--sp-4);
 }
 
+.edu-grid {
+  display: grid;
+  gap: var(--sp-6);
+  align-items: start;
+}
+
 .timeline {
   display: grid;
+  gap: var(--sp-3);
 }
 
 .timeline__item {
   display: grid;
   gap: var(--sp-2);
-  padding-block: var(--sp-5);
-  border-top: 1px solid var(--border);
-}
-
-.timeline__item:last-child {
-  border-bottom: 1px solid var(--border);
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
 }
 
 .timeline__period {
   font-family: var(--font-mono);
-  font-size: var(--fs-note);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: var(--fs-xs);
   color: var(--text-muted);
 }
 
 .timeline__role {
   font-size: 1.125rem;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -0.015em;
 }
 
 .timeline__org {
@@ -1120,40 +1125,57 @@ button {
   color: var(--text-muted);
 }
 
-.certs {
-  margin-top: var(--sp-6);
+.certs__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -0.015em;
 }
 
-.certs__title {
+/* Total de cursos e horas: vem de stats(). */
+.certs__summary {
+  margin-top: var(--sp-1, 0.25rem);
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.certs__summary {
-  margin-top: 0.25rem;
-  font-size: var(--fs-sm);
   color: var(--text-muted);
 }
 
 .cert-groups {
   display: grid;
-  margin-top: var(--sp-5);
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
 }
 
-.cert-group {
-  padding-block: var(--sp-4);
-  border-top: 1px solid var(--border);
+.cert-group__details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
 }
 
 .cert-group__head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--sp-2) var(--sp-4);
-  margin-bottom: var(--sp-3);
+  gap: var(--sp-1, 0.25rem) var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  cursor: pointer;
+  list-style: none;
+}
+
+.cert-group__head::-webkit-details-marker {
+  display: none;
+}
+
+/* Indicador de abrir/fechar à direita. */
+.cert-group__head::after {
+  content: '+';
+  margin-left: auto;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.cert-group__details[open] .cert-group__head::after {
+  content: '−';
 }
 
 .cert-group__name {
@@ -1163,15 +1185,15 @@ button {
 
 .cert-group__meta {
   font-family: var(--font-mono);
-  font-size: var(--fs-note);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: var(--fs-xs);
   color: var(--text-muted);
 }
 
 .cert-list {
   display: grid;
   gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
+  border-top: 1px dashed var(--border);
 }
 
 .cert {
@@ -1484,11 +1506,6 @@ button {
 }
 
 @media (min-width: 640px) {
-  .cert-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--sp-2) var(--sp-5);
-  }
-
   .projects {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1525,6 +1542,10 @@ button {
 
   .hero__head {
     grid-column: 1 / -1;
+  }
+
+  .edu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .about {
