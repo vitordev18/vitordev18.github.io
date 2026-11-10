@@ -320,7 +320,15 @@ import { initContactForm } from './contact.js';
       const isCurrent = button.dataset.filter === activeFilter;
       button.classList.toggle('is-active', isCurrent);
       button.setAttribute('aria-selected', String(isCurrent));
+      // Roving tabindex: só a aba ativa entra na ordem do Tab; as setas cuidam do resto.
+      button.tabIndex = isCurrent ? 0 : -1;
     });
+
+    const panel = $('#projects');
+    if (panel && $('#filters .filter')) {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', `filter-${activeFilter}`);
+    }
 
     $$('#projects .project').forEach((project) => {
       const matches = activeFilter === 'all' || project.dataset.category === activeFilter;
@@ -351,6 +359,29 @@ import { initContactForm } from './contact.js';
       activeFilter = button.dataset.filter;
       applyFilter(true);
     });
+
+    // Padrão de tablist do ARIA: setas trocam de aba, Home/End vão para as pontas.
+    filterBar.addEventListener('keydown', (event) => {
+      const buttons = $$('.filter', filterBar);
+      const index = buttons.indexOf(document.activeElement);
+      if (index < 0) return;
+
+      const moves = {
+        ArrowRight: (index + 1) % buttons.length,
+        ArrowLeft: (index - 1 + buttons.length) % buttons.length,
+        Home: 0,
+        End: buttons.length - 1,
+      };
+      if (!(event.key in moves)) return;
+
+      event.preventDefault();
+      const next = buttons[moves[event.key]];
+      activeFilter = next.dataset.filter;
+      applyFilter(true);
+      next.focus();
+    });
+
+    applyFilter(false);
   }
 
   /** Depois que o render.js remonta as seções num novo idioma: nada pisca e o filtro continua. */

@@ -39,31 +39,28 @@ export const { ready } = (function () {
 
   /* ---------- projetos ---------- */
 
-  function projectCard(project) {
-    const classes = ['project'];
+  /** Partes comuns ao card em destaque e às linhas. */
+  function projectParts(project, categories) {
+    const category = categories.find((item) => item.id === project.category);
 
-    if (project.featured) classes.push('project--featured');
-    classes.push('reveal');
-
-    const head = make('header', { className: 'project__head' });
-
-    if (project.badge) {
-      head.appendChild(
-        make('span', {
-          className: 'project__badge',
-          text: t(project.badge === 'wip' ? 'projects.wip' : 'projects.badge'),
-        })
-      );
-    }
-
-    head.appendChild(make('h3', { className: 'project__title', text: pick(project.title) }));
+    const meta = make('p', {
+      className: 'project__meta',
+      children: [
+        make('span', { text: category ? pick(category.label) : project.category }),
+        // Espaço real entre os dois: o gap do CSS não chega ao leitor de tela.
+        project.badge === 'wip' ? document.createTextNode(' ') : null,
+        project.badge === 'wip'
+          ? make('span', { className: 'project__wip', text: t('projects.wip') })
+          : null,
+      ],
+    });
 
     const tags = make('ul', { className: 'tags tags--sm' });
     (project.tags || []).forEach((tag) => {
       tags.appendChild(make('li', { className: 'tag', text: tag }));
     });
 
-    const footer = make('footer', { className: 'project__links' });
+    const links = make('div', { className: 'project__links' });
     (project.links || []).forEach((link, index) => {
       // O primeiro link é o principal e leva a seta; os demais ficam discretos.
       const anchor = externalLink(link.url, index === 0 ? 'link' : 'link link--muted');
@@ -72,17 +69,61 @@ export const { ready } = (function () {
       anchor.appendChild(make('span', { text: t(key) }));
       if (index === 0) anchor.appendChild(icon(ICON_EXTERNAL));
 
-      footer.appendChild(anchor);
+      links.appendChild(anchor);
     });
 
+    return {
+      title: make('h3', { className: 'project__title', text: pick(project.title) }),
+      desc: make('p', { className: 'project__desc', text: pick(project.desc) }),
+      meta,
+      tags,
+      links,
+    };
+  }
+
+  function featuredCard(project, categories) {
+    const parts = projectParts(project, categories);
+
     return make('article', {
-      className: classes.join(' '),
+      className: 'project project--featured reveal',
       attrs: { 'data-category': project.category || '' },
       children: [
-        head,
-        make('p', { className: 'project__desc', text: pick(project.desc) }),
-        tags,
-        footer,
+        // Painel decorativo: o nome já está no h3.
+        make('div', {
+          className: 'project__art',
+          attrs: { 'aria-hidden': 'true' },
+          children: [make('span', { text: pick(project.title) })],
+        }),
+        make('div', {
+          className: 'project__body',
+          children: [
+            make('span', { className: 'project__badge', text: t('projects.badge') }),
+            parts.title,
+            parts.meta,
+            parts.desc,
+            parts.tags,
+            parts.links,
+          ],
+        }),
+      ],
+    });
+  }
+
+  function projectRow(project, number, categories) {
+    const parts = projectParts(project, categories);
+
+    return make('li', {
+      className: 'project project--row reveal',
+      attrs: { 'data-category': project.category || '' },
+      children: [
+        make('span', {
+          className: 'project__index',
+          attrs: { 'aria-hidden': 'true' },
+          text: String(number).padStart(2, '0'),
+        }),
+        make('div', { className: 'project__main', children: [parts.title, parts.meta, parts.desc] }),
+        parts.tags,
+        parts.links,
       ],
     });
   }
@@ -92,39 +133,43 @@ export const { ready } = (function () {
     const filters = document.getElementById('filters');
 
     if (list) {
-      list.replaceChildren(...data.projects.map(projectCard));
+      // O primeiro marcado como destaque vira o card largo; o resto vira lista de linhas.
+      const featured = data.projects.find((project) => project.featured);
+      const rows = make('ol', { className: 'rows' });
+
+      data.projects
+        .filter((project) => project !== featured)
+        .forEach((project, index) => rows.appendChild(projectRow(project, index + 1, data.categories)));
+
+      list.replaceChildren(...[featured && featuredCard(featured, data.categories), rows].filter(Boolean));
     }
 
     if (!filters) return;
 
     // Só entram no filtro as categorias que realmente têm projeto.
+    // tabindex, aria-selected e is-active são acertados pelo applyFilter do site/main.js.
     const used = new Set(data.projects.map((project) => project.category));
-    const buttons = [
+    const tab = (id, label) =>
       make('button', {
-        className: 'filter is-active',
-        text: t('projects.filter.all'),
-        attrs: { type: 'button', role: 'tab', 'aria-selected': 'true', 'data-filter': 'all' },
-      }),
-    ];
-
-    data.categories
-      .filter((category) => used.has(category.id))
-      .forEach((category) => {
-        buttons.push(
-          make('button', {
-            className: 'filter',
-            text: pick(category.label),
-            attrs: {
-              type: 'button',
-              role: 'tab',
-              'aria-selected': 'false',
-              'data-filter': category.id,
-            },
-          })
-        );
+        className: 'filter',
+        text: label,
+        attrs: {
+          type: 'button',
+          role: 'tab',
+          id: `filter-${id}`,
+          'aria-controls': 'projects',
+          'aria-selected': 'false',
+          tabindex: '-1',
+          'data-filter': id,
+        },
       });
 
-    filters.replaceChildren(...buttons);
+    filters.replaceChildren(
+      tab('all', t('projects.filter.all')),
+      ...data.categories
+        .filter((category) => used.has(category.id))
+        .map((category) => tab(category.id, pick(category.label)))
+    );
   }
 
   /* ---------- experiência e formação ---------- */
