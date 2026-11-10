@@ -26,8 +26,10 @@ This is my personal portfolio: a single-page website that presents who I am, the
 ## ✨ Features
 
 - 🌐 **Fully bilingual** (Portuguese 🇧🇷 / English 🇺🇸) through a custom i18n system — switch languages from the navbar with no page reload
-- 🌗 **Light / dark theme** toggle
-- 📱 **Responsive** layout, built to work well from mobile to desktop
+- 🌗 **Light / dark theme** toggle, with no flash on load
+- 🎨 **"Engineer's changelog" design** — editorial and monochrome with a single accent color; every color is a CSS custom property, themed through `[data-theme]`
+- ♿ **Accessible** — semantic HTML, skip link, visible focus, keyboard-friendly menus and filters (ARIA tablist), WCAG AA contrast, and `prefers-reduced-motion` support
+- 📱 **Responsive** layout, from 320px to 1440px with no horizontal scroll
 - 📨 **Working contact form** powered by [Web3Forms](https://web3forms.com/) — submissions are sent via API without leaving the page (no redirect), with a `mailto` fallback
 - 🗂️ **Content in a single JSON file** — projects, experience, education, and certificates live in `assets/data/content.json` and are rendered at runtime
 - ✏️ **Built-in content editor** (`admin.html`) — add, edit, and reorder entries in both languages, import a repository straight from the GitHub API, and export the updated JSON
@@ -39,12 +41,12 @@ This is my personal portfolio: a single-page website that presents who I am, the
 
 ## 🧭 Sections
 
-- **Home** — intro / hero
-- **About** — who I am
-- **Tech Stack** — the technologies I work with
-- **Experience** — professional experience
-- **Education** — academic background
-- **Projects** — featured work
+- **Home** — name, availability status, and a terminal-style spec card
+- **About** — who I am, plus a grid of live numbers (age, years studying, projects, course hours)
+- **Tech Stack** — languages, frameworks & tools, and practices
+- **Experience** — shown as a `git log`, with a short hash derived from each entry's id
+- **Education** — courses and collapsible certificate groups with total hours
+- **Projects** — a featured card plus a filterable list
 - **Contact** — contact form and links
 
 ---
@@ -74,8 +76,8 @@ vitordev18.github.io/
 │   ├── data/           content.json — projects, experience, education, certificates
 │   ├── js/             ES modules, no build step
 │   │   ├── lib/dom.js            DOM helpers ($, $$, make, icon, storage)
-│   │   ├── content/model.js      content.json format: normalize, validate, stats
-│   │   ├── content/render.js     renders projects, timeline and certificates
+│   │   ├── content/model.js      content.json format: normalize, validate, stats, shortHash
+│   │   ├── content/render.js     renders projects, experience, education and certificates
 │   │   ├── lang/lang.js          current language: t, pick, setLang, onChange
 │   │   ├── lang/dictionary.js    interface text in PT and EN
 │   │   ├── site/main.js          entry point of index.html
@@ -127,8 +129,9 @@ $env:PORT=3000; npm start
 npm test
 ```
 
-They check that `assets/data/content.json` is valid and that the numbers shown on the site
-(projects, companies, courses, hours) are computed correctly.
+They check that `assets/data/content.json` is valid, that the numbers shown on the site
+(projects, companies, courses, hours) are computed correctly, and that the experience
+hashes are stable and unique.
 
 ### Deploying
 
