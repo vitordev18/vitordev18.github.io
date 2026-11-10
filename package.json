@@ -1,0 +1,11 @@
+{
+  "name": "vitordev18.github.io",
+  "private": true,
+  "type": "module",
+  "description": "Portfólio pessoal. Sem dependências: o Node serve só para o servidor local e os testes.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test"
+  }
+}

@@ -56,6 +56,7 @@ This is my personal portfolio: a single-page website that presents who I am, the
 - **JavaScript (Vanilla)** — i18n, theme toggle, and interactions
 - **[Web3Forms](https://web3forms.com/)** — contact form submissions
 - **GitHub Pages** — hosting
+- **Node.js** — only for the local dev server and tests (no dependencies)
 
 ---
 
@@ -65,6 +66,9 @@ This is my personal portfolio: a single-page website that presents who I am, the
 vitordev18.github.io/
 ├── index.html          single-page site
 ├── admin.html          content editor (see below)
+├── package.json        npm start / npm test (no dependencies)
+├── scripts/
+│   └── serve.mjs       local static server, used by npm start
 ├── assets/
 │   ├── css/            styles — style.css (site) and admin.css (editor)
 │   ├── data/           content.json — projects, experience, education, certificates
@@ -77,8 +81,8 @@ vitordev18.github.io/
 │   │   ├── site/main.js          entry point of index.html
 │   │   ├── site/contact.js       contact form (Web3Forms + mailto fallback)
 │   │   └── admin/admin.js        content editor (admin.html)
-│   ├── img/            images
-│   └── cv/             downloadable résumé
+│   ├── img/            profile photo
+│   └── cv/             downloadable résumé (PDF)
 ├── tests/              node --test, no dependencies
 ├── robots.txt          SEO — crawler directives
 └── sitemap.xml         SEO — sitemap
@@ -88,31 +92,48 @@ vitordev18.github.io/
 
 ## 🚀 Running Locally
 
+The site is static, so there is nothing to build or install. You only need a local server,
+because browsers block ES modules and `fetch` on `file://` — opening `index.html` directly
+does not work.
+
+**Requirement:** [Node.js](https://nodejs.org/) 20 or newer. There are no packages to
+install (`npm install` is not needed).
+
 ```bash
-# Clone the repository
 git clone https://github.com/vitordev18/vitordev18.github.io.git
 cd vitordev18.github.io
+npm start
 ```
 
-Then serve the folder with any static server — recommended so the language files load correctly:
+Open `http://localhost:8000`. The editor is at `http://localhost:8000/admin.html`.
+Files are served without cache, so a refresh always shows your latest edit.
+
+To use another port:
 
 ```bash
-# Python 3
-python3 -m http.server 8000
+# macOS / Linux / Git Bash
+PORT=3000 npm start
+
+# PowerShell
+$env:PORT=3000; npm start
 ```
 
-Open `http://localhost:8000` in your browser. (You can also use the **Live Server** extension in VS Code.)
+> 💡 Prefer not to use Node? Any static server works: the **Live Server** extension in
+> VS Code, or `python3 -m http.server 8000`, for example.
 
-> 💡 Opening `index.html` directly via `file://` does not work: browsers block ES modules and `fetch` there. Use a local server as shown above.
-
-Run the tests (Node 20+, no install needed):
+### Tests
 
 ```bash
-node --test
+npm test
 ```
 
 They check that `assets/data/content.json` is valid and that the numbers shown on the site
 (projects, companies, courses, hours) are computed correctly.
+
+### Deploying
+
+The site is published by GitHub Pages straight from the `main` branch: commit and push, and
+the change goes live at the link above within a minute or two. There is no build step.
 
 ---
 
@@ -123,7 +144,7 @@ live in `assets/data/content.json`, with a Portuguese and an English value for e
 and are rendered by `assets/js/content/render.js`. Its format is defined once in
 `assets/js/content/model.js`, shared by the site, the editor, and the tests.
 
-To change them, open `admin.html` while the site is running locally:
+To change them, run `npm start` and open `http://localhost:8000/admin.html`:
 
 1. The editor loads the current `content.json`.
 2. Add, edit, reorder, or remove entries — PT and EN fields side by side.
